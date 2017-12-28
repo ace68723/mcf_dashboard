@@ -16,6 +16,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
   companyInfo: any = [];
   pageNumArray: any = [];
   page_size: number;
+  i: any;
   total_page: number;
   dataloded: any = false;
   constructor(private _script: ScriptLoaderService, private appService: AppService, private cpyService: CompanyService,

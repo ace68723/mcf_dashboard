@@ -1,5 +1,4 @@
 import { OrdersComponent } from './orders/orders.component';
-import { NewmerchantComponent } from './newmerchant/newmerchant.component';
 import { PaymentComponent } from './payment/payment.component';
 import { CompanyService } from './service/company.service';
 import { TransactionComponent } from './transaction/transaction.component';
@@ -36,7 +35,6 @@ import { MerchantComponent } from './merchant/merchant.component';
     TransactionComponent,
     MerchantComponent,
     PaymentComponent,
-    NewmerchantComponent,
     OrdersComponent
   ],
   imports: [

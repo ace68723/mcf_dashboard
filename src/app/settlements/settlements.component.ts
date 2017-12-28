@@ -15,6 +15,7 @@ export class SettlementComponent implements OnInit, AfterViewInit {
   page_size: number;
   total_page: number;
   pageNumArray: any = [];
+  i: any;
   constructor(private _script: ScriptLoaderService, private appService: AppService) {
 
   }

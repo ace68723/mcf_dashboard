@@ -16,6 +16,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
   payments: any = [];
   pageNumArray: any = [];
   page_size: number;
+  i: any;
   total_page: number;
   randomcolor: any;
   constructor(private _script: ScriptLoaderService, private appService: AppService, private cpyService: CompanyService,

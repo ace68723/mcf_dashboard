@@ -17,6 +17,7 @@ export class TransactionComponent implements OnInit, AfterViewInit {
     categories: any;
     merchantname: any;
     status: any;
+    i: any;
     time: any = [
     ];
     account_id: any;

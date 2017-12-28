@@ -1,5 +1,4 @@
 import { OrdersComponent } from './orders/orders.component';
-import { NewmerchantComponent } from './newmerchant/newmerchant.component';
 import { SettlementComponent } from './settlements/settlements.component';
 import { LoginComponent } from './login/login.componnet';
 import { Routes } from '@angular/router';
@@ -11,7 +10,6 @@ import { PaymentComponent } from './payment/payment.component';
 export const ROUTES: Routes = [
   { path: '', pathMatch: 'full', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: 'settlement', component: SettlementComponent, canActivate: [AuthGuard]},
-  { path: 'new', component: NewmerchantComponent, canActivate: [AuthGuard]},
   { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard]},
   { path: 'order', component: OrdersComponent, canActivate: [AuthGuard]},
   { path: 'transaction', component: TransactionComponent, canActivate: [AuthGuard]},

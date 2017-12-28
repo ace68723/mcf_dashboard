@@ -17,6 +17,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   companyInfo: any = [];
   pageNumArray: any = [];
   page_size: number;
+  newUser: any = false;
+  i: any;
   total_page: number;
   message: any = false;
   dataloded: any = false;

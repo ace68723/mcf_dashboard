@@ -26,6 +26,10 @@ export class MerchantComponent implements OnInit, AfterViewInit {
   userInfo: any;
   deviceInfo: any;
   aliInfo: any = [];
+  alic: any = false;
+  wxc: any = false;
+  newUser: any = false;
+  i: any;
   wxInfo: any = [];
   contractInfo: any;
   merchantName: any;
