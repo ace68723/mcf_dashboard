@@ -1,0 +1,59 @@
+<div>
+    
+    <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-light ">
+        <!-- BEGIN: Aside Menu -->
+        <div class="m-dropdown__body m-dropdown__body--paddingless">
+                <div class="m-dropdown__content">
+                    <div class="m-scrollable" data-scrollable="false" data-max-height="380" data-mobile-max-height="200">
+                        <div class="m-nav-grid m-nav-grid--skin-light">
+                            <div class="m-nav-grid__row" >
+                                <a href="#" class="m-nav-grid__item" [routerLink]="['']" routerLinkActive = 'active' [routerLinkActiveOptions]="{exact:true}">
+                                    <i class="m-nav-grid__icon flaticon-users"></i>
+                                    <span class="m-nav-grid__text">
+                                        Merchants
+                                    </span>
+                                </a>
+                                
+                            </div>
+                            <div class="m-nav-grid__row" >
+                                    <a href="#" class="m-nav-grid__item" [routerLink]="['/order']" routerLinkActive = 'active'>
+                                            <i class="m-nav-grid__icon flaticon-list-2"></i>
+                                            <span class="m-nav-grid__text">
+                                                Orders
+                                            </span>
+                                    </a>
+                            </div>
+                            <div class="m-nav-grid__row" >
+                                <a href="#" class="m-nav-grid__item" [routerLink]="['/settlement']" routerLinkActive = 'active'>
+                                    <i class="m-nav-grid__icon flaticon-folder-2"></i>
+                                    <span class="m-nav-grid__text">
+                                        Settlements
+                                    </span>
+                                </a>
+                                
+                            </div>
+                            <div class="m-nav-grid__row" >
+                                    <a href="#" class="m-nav-grid__item" [routerLink]="['/payment']" routerLinkActive = 'active'>
+                                        <i class="m-nav-grid__icon flaticon-piggy-bank"></i>
+                                        <span class="m-nav-grid__text">
+                                                Remittance
+                                        </span>
+                                    </a>
+                                    
+                                </div>
+                            <div class="m-nav-grid__row" (click) = 'logout()' >
+                                    <a href="#" class="m-nav-grid__item">
+                                            <i class="m-nav-grid__icon flaticon-logout"></i>
+                                            <span class="m-nav-grid__text">
+                                                Logout
+                                            </span>
+                                    </a>
+                            </div>  
+                            <div class="m-nav-grid__row"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- END: Aside Menu -->
+    </div>
+</div>

@@ -1,0 +1,107 @@
+<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default"  >
+	<!-- begin:: Page -->
+	<div class="m-grid m-grid--hor m-grid--root m-page">
+        <app-header></app-header>
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+            <app-sidebar></app-sidebar>
+            <div class="m-content" style="width:100%">
+                
+                <div class="m-portlet m-portlet--mobile">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    {{merchantname}}
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <!--begin: Search Form -->
+                        <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+                            <div class="m-portlet__head-tools">
+                                <div style = 'display:inline-flex; margin-bottom:20px;'>
+                                    <div class='input-group date' id='m_datepicker_1_validate' >
+                                        <input type='text' class="form-control m-input" readonly placeholder="Select date" value = 'time.iv_start'[(ngModel)]="time.iv_start" #ip [ngModelOptions]="{standalone: true}"/> 
+                                        <span class="input-group-addon">
+                                            <i class="la la-calendar-check-o"></i>
+                                        </span>
+                                    </div>
+                                    <div class='input-group date' id='m_datepicker_1_validate' style="margin-left:20px;margin-right:20px">
+                                        <input type='text' class="form-control m-input" readonly placeholder="Select date" value = 'time.end'[(ngModel)]="time.end" #ipp [ngModelOptions]="{standalone: true}"/> 
+                                        <span class="input-group-addon">
+                                            <i class="la la-calendar-check-o"></i>
+                                        </span>
+                                    </div>
+                                    <button (click) = "getBillHistory()" class="btn btn-warning" >获取过去订单</button>
+                                </div>
+                                <br>
+                                <button (click) = "getTable()" class="btn btn-warning" >获取今天订单</button>
+                            </div>
+                        </div>
+                        <!--end: Search Form -->
+                        <!--begin: Datatable -->
+                        <div class="m-section__content">
+                            <table class="table m-table m-table--head-separator-primary" >
+                                <thead>
+                                <tr>
+                                    <th>
+                                        Transaction ID
+                                    </th>
+                                    <th>
+                                        付款时间
+                                    </th>
+                                    <th>
+                                        金额
+                                    </th>
+                                    <th>
+                                        支付渠道
+                                    </th>
+                                    <th>
+                                        支付状态
+                                    </th>
+                                    <th>
+                                        操作人员
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr  *ngFor="let item of categories; index as i;trackBy: i" [attr.data-index]="i" >
+                                        <td scope="row">
+                                            {{item.ref_id}}
+                                        </td>
+                                        <td>
+                                            {{item.time}}
+                                        </td>
+                                       
+                                        <td>
+                                            {{item.amount_in_cent}}
+                                        </td>
+                                        <td>
+                                            {{item.vendor_channel}}
+                                        </td>
+                                        <td>
+                                            {{item.is_refund}}
+                                        </td>
+                                        <td>
+                                            {{item.username}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>    
+                            <div style="display: inline-flex" *ngFor="let item of pageNumArray;  index as i;trackBy: i" [attr.data-index]="i">
+                                    <a style="margin-right:7px" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" (click) = 'goToPage(i)'>
+                                            <p style="height: 100%;
+                                            margin-top: 27%;">{{i+1}}</p>
+                                    </a>
+                            </div>
+                                              
+                        </div>
+                    <!--end: Datatable -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</body> 

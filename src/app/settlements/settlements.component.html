@@ -1,0 +1,79 @@
+<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default"  >
+	<!-- begin:: Page -->
+	<div class="m-grid m-grid--hor m-grid--root m-page">
+        <app-header></app-header>
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+            <app-sidebar></app-sidebar>
+            <div class="m-content" style="width:100%">
+                
+                <div class="m-portlet m-portlet--mobile">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    Settlements
+                                </h3>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="m-portlet__body">
+                        
+                        <div class="m-section__content">
+                            <table class="table m-table m-table--head-separator-primary" >
+                                <thead>
+                                <tr>
+                                    <th>
+                                        Merchant ID
+                                    </th>
+                                    <th>
+                                        Account ID
+                                    </th>
+                                    <th>
+                                        Start Time
+                                    </th>
+                                    <th>
+                                        Amount
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+                                    
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr  *ngFor="let item of settlments; index as i;trackBy: i" [attr.data-index]="i" >
+                                        <td scope="row">
+                                            {{item.merchant_id}}
+                                        </td>
+                                        <td>
+                                            {{item.account_id}}
+                                        </td>
+                                        <td>
+                                            {{item.last_time}}
+                                        </td>
+                                        <td>
+                                            {{item.amount_in_cent}}
+                                        </td>
+                                        <td>
+                                           <button class = 'btn btn-danger btn-sm' (click) = 'addSettlement(item)' >Settle</button>
+                                        </td>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div style="display: inline-flex" *ngFor="let item of pageNumArray;  index as i;trackBy: i" [attr.data-index]="i">
+                                    <a class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" (click) = 'goToPage(i)'>
+                                            <p style="height: 100%;
+                                            margin-top: 27%;">{{i+1}}</p>
+                                    </a>
+                            </div>
+                        </div>
+                        
+                    <!--end: Datatable -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body> 

@@ -1,0 +1,515 @@
+<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default"  >
+        <!-- begin:: Page -->
+        <div class="m-grid m-grid--hor m-grid--root m-page">
+            <app-header></app-header>
+            <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+                <app-sidebar></app-sidebar>
+                <div class="m-content" style="width:100%; height: 100%">
+                    <div class="m-content" style="width:100%">
+                
+                        <div class="m-portlet m-portlet--mobile">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <h3 class="m-portlet__head-text">
+                                            {{merchantName}}
+                                        </h3>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="m-portlet__body">
+                                
+                                <ul class="nav nav-pills nav-pills--success" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#m_tabs_4_1" (click) = 'setCategoryToBasic()'>
+                                            Basic Info
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#m_tabs_4_2" (click) = 'setCategoryToUser()'>
+                                            User Info
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#m_tabs_4_3" (click) = 'setCategoryToDevice()'>
+                                            Device Info
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#m_tabs_4_4" (click) = 'setCategoryToChannel()'>
+                                            Channel Info
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#m_tabs_4_5" (click) = 'setCategoryToContract()'>
+                                            Contract Info
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="m_tabs_4_1" role="tabpanel" *ngIf="dataLoded">
+                                        <table class="table m-table m-table--head-separator-primary" >
+                                            <tr>
+                                                <td style="width:150px">Account ID</td>
+                                                <td>
+                                                    <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.account_id" size = '20' style = "border-radius: 10px;">
+                                                </td>
+                                                <td style="width:150px">Contract Person</td>
+                                                <td>
+                                                <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.contact_person" style = "border-radius: 10px;">
+                                                </td>
+                                                
+                                            </tr>
+                                            <tr>
+                                              <td style="width:150px">Merchant Name</td>
+                                              <td colspan="3">
+                                                <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.display_name" size = '20' style = "border-radius: 10px;">
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td style="width:150px">Address</td>
+                                              <td colspan="3">
+                                                <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.address" style = "border-radius: 10px;">
+                                              </td>
+                                              
+                                            </tr>
+                                            <tr>
+                                              <td style="width:150px">Telephone Number</td>
+                                              <td>
+                                                <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.cell" style = "border-radius: 10px;">
+                                              </td>
+                                              <td style="width:150px">Email</td>
+                                              <td>
+                                                <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.email" style = "border-radius: 10px;">
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td style="width:150px">Legal Name</td>
+                                              <td colspan="3">
+                                                <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.legal_name" style = "border-radius: 10px;">
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td style="width:150px">Postal Code</td>
+                                              <td>
+                                                <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.postal" style = "border-radius: 10px;">
+                                              </td>
+                                              <td style="width:150px">City</td>
+                                              <td>
+                                                <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.city" style = "border-radius: 10px;">
+                                              </td>
+                                              
+                                            </tr>
+                                            <tr>
+                                              <td style="width:150px">Province</td>
+                                              <td>
+                                                  <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.province" style = "border-radius: 10px;">
+                                              </td>
+                                              <td style="width:150px">Timezone</td>
+                                                <td>
+                                                    <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.timezone" size = '20' style = "border-radius: 10px;">
+                                                </td>
+                                            </tr>
+                                           
+                                        </table>
+                                        <div style="display: inline-flex">
+                                                <button class="btn btn-warning" *ngIf="!editing" (click) = 'editing = !editing'> Edit</button>
+                                                <button class="btn btn-warning" *ngIf="editing" (click) = 'editing = !editing;saveCategoryBasic()'  style = 'margin-right: 20px'> Save</button>
+                                                <button class="btn btn-warning" *ngIf="editing" (click) = 'editing = !editing;setCategoryToBasic()' > Cancel</button>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="m_tabs_4_2" role="tabpanel" style="overflow:visible">
+                                            <div class="m-section__content">
+                                                    <table class="table m-table m-table--head-separator-primary" >
+                                                        <thead>
+                                                        <tr>
+                                                            <th>
+                                                                Account ID
+                                                            </th>
+                                                            <th>
+                                                                Merchant ID
+                                                            </th>
+                                                            <th>
+                                                                Username
+                                                            </th>
+                                                            <th>
+                                                                Role
+                                                            </th>
+                                                            <th>
+                                                                Password
+                                                            </th>
+                                                            <th *ngIf="!editing2">
+                                                                Edit
+                                                            </th>
+                                                            <th *ngIf="editing2">
+                                                                Save
+                                                            </th>
+                                                            <th *ngIf="editing2">
+                                                                Cancel 
+                                                            </th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr  *ngFor="let item of userInfo; index as i;trackBy: i" [attr.data-index]="i" >
+                                                                <td  scope="row">
+                                                                    {{item.account_id}}
+                                                                </td>
+                                                                <td >
+                                                                    {{item.merchant_id}}
+                                                                </td>
+                                                                <td *ngIf="!item.isEditing">
+                                                                    {{item.username}}
+                                                                </td>
+                                                                <td *ngIf="!!item.isEditing">
+                                                                    <input class = "form-control m-input" type="text" [(ngModel)]="item.username" >                         
+                                                                </td>
+                                                                <td *ngIf="!item.isEditing">
+                                                                    {{item.role}}
+                                                                </td>
+                                                                
+                                                                <td *ngIf="!!item.isEditing">
+                                                                    <input class = "form-control m-input" type="text" [(ngModel)]="item.role" >                          
+                                                                </td>
+                                                                <td >
+                                                                    <input disabled class = "form-control m-input" type="text" [(ngModel)]="item.password" placeholder="添加后返回">                                                                    
+                                                                </td>
+                                                                <td *ngIf="!item.isEditing">
+                                                                    <button class="btn btn-warning"  (click)='startEditing(item)'>edit</button>
+                                                                </td>
+                                                                <td *ngIf="!!item.isEditing">
+                                                                    <button class="btn btn-warning"  (click)='saveEditingUser(item)'>save</button>
+                                                                </td>
+                                                                <td *ngIf="!!item.isEditing">
+                                                                    <button class="btn btn-warning"  (click)='cancelEditing(item)'>cancel</button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table> 
+                                                    <button class= "btn btn-warning" (click)= 'newUser = true; addNewUser();'>添加新用户</button>
+                                                    <p *ngIf="message" style="color:#c49a6c">Add New User Successfully</p>
+                                                        <div *ngIf="newUser">
+                                                            <table class="table m-table m-table--head-separator-primary" >
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>
+                                                                        Account ID
+                                                                    </th>
+                                                                    <th>
+                                                                        Merchant ID
+                                                                    </th>
+                                                                    <th>
+                                                                        Username
+                                                                    </th>
+                                                                    <th>
+                                                                        Password
+                                                                    </th>
+                                                                    <th>
+                                                                        Role
+                                                                    </th>
+                                                                    <th>
+                                                                        Add
+                                                                    </th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr  *ngFor="let item of newUserInfo; index as i;trackBy: i" [attr.data-index]="i" >
+                                                                        <td  scope="row">
+                                                                            {{account_id}}
+                                                                        </td>
+                                                                        <td >
+                                                                            {{merchant_id}}
+                                                                        </td>
+                                                                        
+                                                                        <td>
+                                                                            <input class = "form-control m-input" type="text" [(ngModel)]="item.username" >                         
+                                                                        </td>
+                                                                        <td >
+                                                                           <input disabled class = "form-control m-input" type="text" [(ngModel)]="password" placeholder="添加后返回">                                                                    
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class = "form-control m-input" type="text" [(ngModel)]="item.role" >                          
+                                                                        </td>
+                                                                        <td>
+                                                                            <button class="btn btn-warning"  (click)='saveNewUser(item)'>Add</button>
+                                                                        </td>
+                                                                        
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table> 
+                                                        </div>                                               
+                                            </div>                               
+                                    </div>
+                                    <div class="tab-pane" id="m_tabs_4_3" role="tabpanel">
+                                        <div class="m-section__content">
+                                            <table class="table m-table m-table--head-separator-primary" >
+                                                <thead>
+                                                <tr>
+                                                    <th>
+                                                        Account ID
+                                                    </th>
+                                                    <th>
+                                                        Device ID
+                                                    </th>
+                                                    <th>
+                                                        Delete
+                                                    </th>
+                                                   
+                                                    <th *ngIf="!editing2">
+                                                        Edit
+                                                    </th>
+                                                    <th *ngIf="editing2">
+                                                        Save
+                                                    </th>
+                                                    <th *ngIf="editing2">
+                                                        Cancel 
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr  *ngFor="let item of deviceInfo; index as i;trackBy: i" [attr.data-index]="i" >
+                                                        <td *ngIf="!item.isEditing" scope="row">
+                                                            {{item.account_id}}
+                                                        </td>
+                                                        <td *ngIf="!!item.isEditing">
+                                                            <input class = "form-control m-input" type="text" [(ngModel)]='item.account_id' scope="row"> 
+                                                        </td>
+                                                        
+                                                        <td *ngIf="!item.isEditing">
+                                                            {{item.device_id}}
+                                                        </td>
+                                                        <td *ngIf="!!item.isEditing">
+                                                            <input class = "form-control m-input" type="text" [(ngModel)]='item.device_id' scope="row"> 
+                                                        </td>
+                                                        <td *ngIf="!item.isEditing">
+                                                            {{item.is_deleted}}
+                                                        </td>
+                                                        <td *ngIf="!!item.isEditing">
+                                                            <input class = "form-control m-input" type="text" [(ngModel)]='item.is_deleted' scope="row"> 
+                                                        </td>
+                                                      
+                                                        <td *ngIf="!item.isEditing">
+                                                            <button class="btn btn-warning"  (click)='startEditing(item)'>edit</button>
+                                                        </td>
+                                                        <td *ngIf="!!item.isEditing">
+                                                            <button class="btn btn-warning"  (click)='saveEditingDevice(item)'>save</button>
+                                                        </td>
+                                                        <td *ngIf="!!item.isEditing">
+                                                            <button class="btn btn-warning"  (click)='cancelEditing(item);setCategoryToDevice()'>cancel</button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>                                                
+                                    </div>                       
+                                    </div>                              
+                                    <div class="tab-pane" id="m_tabs_4_4" role="tabpanel">
+                                            <div class="m-section__content">
+                                                    <div *ngIf="ali">
+                                                            <P>Alipay</P>
+                                                            <hr>
+                                                            <table class="table m-table m-table--head-separator-primary" >
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>
+                                                                        Rate
+                                                                    </th>
+                                                                    <th>
+                                                                        Merchant ID
+                                                                    </th>
+                                                                    <th>
+                                                                        Password
+                                                                    </th>
+                                                                    <th>
+                                                                        Name
+                                                                    </th>
+                                                                    
+                                                                    <th *ngIf="!editing2">
+                                                                        Edit
+                                                                    </th>
+                                                                    <th *ngIf="editing2">
+                                                                        Save
+                                                                    </th>
+                                                                    <th *ngIf="editing2">
+                                                                        Cancel 
+                                                                    </th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr  *ngFor="let item of aliInfo; index as i;trackBy: i" [attr.data-index]="i" >
+                                                                        <td *ngIf="!item.isEditing" scope="row">
+                                                                            {{item.rate}}
+                                                                        </td>
+                                                                        <td *ngIf="item.isEditing">
+                                                                            <input class = "form-control m-input" type="text" [(ngModel)]='item.rate' scope="row"> 
+                                                                        </td>
+                                                                        
+                                                                        <td *ngIf="!item.isEditing">
+                                                                            {{item.sub_mch_id}}
+                                                                        </td>
+                                                                        <td *ngIf="item.isEditing">
+                                                                            <input class = "form-control m-input"  type="text" [(ngModel)]="item.sub_mch_id" > 
+                                                                        </td>
+                                                                        <td *ngIf="!item.isEditing">
+                                                                            {{item.sub_mch_industry}}
+                                                                        </td>
+                                                                        <td *ngIf="item.isEditing">
+                                                                            <input class = "form-control m-input" type="text" [(ngModel)]="item.sub_mch_industry" >                         
+                                                                        </td>
+                                                                        <td *ngIf="!item.isEditing">
+                                                                            {{item.sub_mch_name}}
+                                                                        </td>
+                                                                        <td *ngIf="item.isEditing">
+                                                                            <input class = "form-control m-input" type="text" [(ngModel)]="item.sub_mch_name" >                          
+                                                                        </td>
+                                                                        <td *ngIf="!item.isEditing">
+                                                                            <button class="btn btn-warning" class="btn btn-primary" (click)='startEditingAli(item)'>edit</button>
+                                                                        </td>
+                                                                        <td *ngIf="item.isEditing">
+                                                                            <button class="btn btn-warning" class="btn btn-primary" (click)='saveEditingAli(item)'>save</button>
+                                                                        </td>
+                                                                        <td *ngIf="item.isEditing">
+                                                                            <button class="btn btn-warning" class="btn btn-primary" (click)='cancelEditing(item);setCategoryToChannel()'>cancel</button>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                    </div>
+                                                    <div *ngIf="wx">
+                                                            <P>Wechat</P>
+                                                            <hr>
+                                                            <table class="table m-table m-table--head-separator-primary" >
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th>
+                                                                            Rate
+                                                                        </th>
+                                                                        <th>
+                                                                            Merchant ID
+                                                                        </th>
+                                                                        <th *ngIf="!editing3">
+                                                                            Edit
+                                                                        </th>
+                                                                        <th *ngIf="editing3">
+                                                                            Save
+                                                                        </th>
+                                                                        <th *ngIf="editing3">
+                                                                            Cancel 
+                                                                        </th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr  *ngFor="let item of wxInfo; index as i;trackBy: i" [attr.data-index]="i" >
+                                                                            <td *ngIf="!item.isEditing" scope="row">
+                                                                                {{item.rate}}
+                                                                            </td>
+                                                                            <td *ngIf="!!item.isEditing">
+                                                                                <input class = "form-control m-input" type="text" [(ngModel)]='item.rate' scope="row"> 
+                                                                            </td>
+                                                                            
+                                                                            <td *ngIf="!item.isEditing">
+                                                                                {{item.sub_mch_id}}
+                                                                            </td>
+                                                                            <td *ngIf="!!item.isEditing">
+                                                                                <input class = "form-control m-input"  type="text" [(ngModel)]="item.sub_mch_id" > 
+                                                                            </td>
+                                                                            <td *ngIf="!item.isEditing">
+                                                                                <button class="btn btn-warning" class="btn btn-primary" (click)='startEditingWX(item)'>edit</button>
+                                                                            </td>
+                                                                            <td *ngIf="!!item.isEditing">
+                                                                                <button class="btn btn-warning" class="btn btn-primary" (click)='saveEditingWX(item)'>save</button>
+                                                                            </td>
+                                                                            <td *ngIf="!!item.isEditing">
+                                                                                <button class="btn btn-warning" class="btn btn-primary" (click)='cancelEditing(item)'>cancel</button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>                                                                                   
+            
+                                                    </div>
+                                                 </div>                                    
+                                    </div>
+                                    <div class="tab-pane" id="m_tabs_4_5" role="tabpanel" >
+                                            <table *ngIf="dataLoded1" class="table m-table m-table--head-separator-primary" >
+                                                    <tr>
+                                                        <td style="width:150px">Account ID</td>
+                                                        <td>
+                                                            <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.account_id" size = '20' style = "border-radius: 10px;">
+                                                        </td>
+                                                        <td style="width:150px">Device Amount</td>
+                                                        <td>
+                                                        <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.device_amount" style = "border-radius: 10px;">
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                    <tr>
+                                                      <td style="width:150px">Minimum Amount</td>
+                                                      <td colspan="3">
+                                                        <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.remit_min_in_cent" size = '20' style = "border-radius: 10px;">
+                                                      </td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td style="width:150px">Tip Mode</td>
+                                                      <td colspan="3">
+                                                        <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.tip_mode" style = "border-radius: 10px;">
+                                                      </td>
+                                                      
+                                                    </tr>
+                                                    <tr>
+                                                      <td style="width:150px">Start Date</td>
+                                                      <td>
+                                                        <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.start_date" style = "border-radius: 10px;">
+                                                      </td>
+                                                      <td style="width:150px">End Date</td>
+                                                      <td>
+                                                        <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.end_date" style = "border-radius: 10px;">
+                                                      </td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td style="width:150px">Bank Account</td>
+                                                      <td>
+                                                        <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.bank_account" style = "border-radius: 10px;">
+                                                      </td>
+                                                      <td style="width:150px">Bank Institute</td>
+                                                      <td>
+                                                        <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.bank_instit" style = "border-radius: 10px;">
+                                                      </td>
+                                                      
+                                                    </tr>
+                                                    <tr>
+                                                      <td style="width:150px">Bank Transit</td>
+                                                      <td>
+                                                          <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.bank_transit" style = "border-radius: 10px;">
+                                                      </td>
+                                                      <td style="width:150px">Contract Price</td>
+                                                        <td>
+                                                            <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.contract_price" size = '20' style = "border-radius: 10px;">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width:150px">Note</td>
+                                                        <td colspan="3">
+                                                            <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.note" style = "border-radius: 10px;">
+                                                        </td>
+                                                    </tr>
+                                                   
+                                            </table>
+                                            <div style="display: inline-flex">
+                                                    <button class="btn btn-warning" *ngIf="!editing" (click) = 'editing = !editing' > Edit</button>
+                                                    <button class="btn btn-warning" *ngIf="editing" (click) = 'editing = !editing;saveCategoryContract()'  style = 'margin-right: 20px'> Save</button>
+                                                    <button class="btn btn-warning" *ngIf="editing" (click) = 'editing = !editing;setCategoryToContract()' > Cancel</button>
+                                            </div>                                
+                                    </div>
+                                </div>   
+                            <!--end: Datatable -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body> 
+    
+    
+    
+    
+    
