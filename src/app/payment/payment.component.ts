@@ -51,10 +51,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
         this.payments.forEach(item => {
           if (item.is_remitted == 1) {
                 item.is_remitted = 'Remitted';
-                this.randomcolor = 'green';
           } else {
             item.is_remitted = 'Not Remitted';
-            this.randomcolor = 'red';
           }
         });
         this.payments.forEach(item => {
@@ -86,6 +84,9 @@ export class PaymentComponent implements OnInit, AfterViewInit {
           // const sec = a.getSeconds();
           // item.end_time = year + ' ' + month + ' ' + date + ' ' + hour + ':' + min + ':' + sec ;
           return item.end_time;
+         });
+         this.payments.forEach(item => {
+           item.amount_in_cent = item.amount_in_cent / 100;
          });
       }
     );
@@ -99,11 +100,9 @@ export class PaymentComponent implements OnInit, AfterViewInit {
         this.payments.forEach(item => {
           if (item.is_remitted == 1) {
                 item.is_remitted = 'Remitted';
-                this.randomcolor = 'green';
 
           } else {
             item.is_remitted = 'Not Remitted';
-            this.randomcolor = 'red';
 
           }
         });
@@ -137,6 +136,9 @@ export class PaymentComponent implements OnInit, AfterViewInit {
           // item.end_time = year + ' ' + month + ' ' + date + ' ' + hour + ':' + min + ':' + sec ;
           return item.end_time;
          });
+         this.payments.forEach(item => {
+          item.amount_in_cent = item.amount_in_cent / 100;
+        });
       }
     );
     setTimeout(() => {
@@ -145,12 +147,15 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     console.log(this.pageNumArray);
   }
   setSettlement(item) {
+    item.amount_in_cent = item.amount_in_cent * 100;
     this.appService.setSettlement(item).subscribe(
       event => {
         console.log(event);
       }
     );
-    this.getMerchants();
+    setTimeout(() => {
+      this.getMerchants();
+    }, 2000);
   }
 
 }

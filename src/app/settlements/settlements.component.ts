@@ -81,8 +81,8 @@ export class SettlementComponent implements OnInit, AfterViewInit {
         this.total_page = event.ev_data.total_page;
         console.log(this.settlments);
         this.settlments.forEach(item => {
-          const a = new Date(item.start_time * 1000);
-          item.start_time = a.toLocaleString();
+          const a = new Date(item.last_time * 1000);
+          item.display_time = a.toLocaleString();
           // const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
           // const year = a.getFullYear();
           // const month = months[a.getMonth()];
@@ -94,21 +94,10 @@ export class SettlementComponent implements OnInit, AfterViewInit {
           //   sec = '0' + sec;
           // }
           // item.start_time = year + ' ' + month + ' ' + date + ' ' + hour + ':' + min + ':' + sec ;
-          return item.start_time;
+          return item.display_time;
          });
          this.settlments.forEach(item => {
-          const a = new Date(item.end_time * 1000);
-          item.end_time = a.toLocaleString();
-
-          // const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-          // const year = a.getFullYear();
-          // const month = months[a.getMonth()];
-          // const date = a.getDate();
-          // const hour = a.getHours();
-          // const min = a.getMinutes();
-          // const sec = a.getSeconds();
-          // item.end_time = year + ' ' + month + ' ' + date + ' ' + hour + ':' + min + ':' + sec ;
-          return item.end_time;
+           item.amount_in_cent = item.amount_in_cent / 100;
          });
       }
     );
@@ -118,12 +107,15 @@ export class SettlementComponent implements OnInit, AfterViewInit {
     console.log(this.pageNumArray);
   }
   addSettlement(item) {
+    item.amount_in_cent = item.amount_in_cent * 100;
     this.appService.addSettlement(item).subscribe(
       event => {
         console.log(event);
       }
     );
-    this.getTable();
+    setTimeout(() => {
+      this.getTable();
+    }, 2000);
   }
 
 }
