@@ -16,19 +16,17 @@ export class HeaderComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.currentpath = window.location.pathname;
     console.log(this.currentpath);
-    if (this.currentpath == '/') {
+    if (this.currentpath == '/dashboard/') {
       this.currentpath = 'Merchants';
-    } else if (this.currentpath == '/order') {
+    } else if (this.currentpath == '/dashboard/order') {
       this.currentpath = 'Orders';
-    } else if (this.currentpath == '/settlement') {
+    } else if (this.currentpath == '/dashboard/settlement') {
       this.currentpath = 'Settlement';
-    } else if (this.currentpath == '/merchant') {
+    } else if (this.currentpath == '/dashboard/merchant') {
       this.currentpath = 'Merchant Detail';
-    } else if (this.currentpath == '/payment') {
+    } else if (this.currentpath == '/dashboard/payment') {
       this.currentpath = 'Remittance';
-    } else if (this.currentpath == '/new') {
-      this.currentpath = 'New Merchant';
-    } else if (this.currentpath == '/transaction') {
+    }  else if (this.currentpath == '/dashboard/payment') {
       this.currentpath = 'Transaction';
     }
   }

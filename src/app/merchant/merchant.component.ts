@@ -170,7 +170,9 @@ export class MerchantComponent implements OnInit, AfterViewInit {
         console.log(event);
       }
     );
-    this.setCategoryToBasic();
+    setTimeout(() => {
+     this.setCategoryToBasic();
+    }, 2000);
   }
   saveCategoryContract() {
     this.cpyService.setMerchantContract(this.contractInfo).subscribe(
@@ -178,7 +180,9 @@ export class MerchantComponent implements OnInit, AfterViewInit {
         console.log(event);
       }
     );
-    this.setCategoryToContract();
+    setTimeout(() => {
+     this.setCategoryToContract();
+    }, 2000);
   }
   saveEditingDevice(item) {
     this.cpyService.setMerchantDevice(item).subscribe(
@@ -188,8 +192,9 @@ export class MerchantComponent implements OnInit, AfterViewInit {
         this.editing2 = false;
       }
     );
-    this.setCategoryToDevice();
-
+    setTimeout(() => {
+     this.setCategoryToDevice();
+    }, 2000);
   }
 
   saveEditingAli(item) {
@@ -203,7 +208,9 @@ export class MerchantComponent implements OnInit, AfterViewInit {
         this.editing3 = false;
       }
     );
-    this.setCategoryToChannel();
+    setTimeout(() => {
+     this.setCategoryToChannel();
+    }, 2000);
   }
   saveEditingWX(item) {
     item.channel = 'wx';
@@ -217,7 +224,9 @@ export class MerchantComponent implements OnInit, AfterViewInit {
         this.editing3 = false;
       }
     );
-    this.setCategoryToChannel();
+    setTimeout(() => {
+     this.setCategoryToChannel();
+    }, 2000);
   }
 // save end
 // new
@@ -327,7 +336,9 @@ export class MerchantComponent implements OnInit, AfterViewInit {
         this.editing2 = false;
       }
     );
-    this.setCategoryToDevice();
+    setTimeout(() => {
+      this.setCategoryToDevice();
+    }, 2000);
   }
   deleteUser(item) {
     item.is_deleted = 1;
@@ -338,6 +349,8 @@ export class MerchantComponent implements OnInit, AfterViewInit {
         this.editing2 = false;
       }
     );
+    setTimeout(() => {
     this.setCategoryToUser();
+    }, 2000);
   }
 }
