@@ -11,7 +11,7 @@
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
                                     <h3 class="m-portlet__head-text">
-                                        Payments
+                                        Remittance
                                     </h3>
                                 </div>
                             </div>
@@ -36,7 +36,10 @@
                                             End Time
                                         </th>
                                         <th>
-                                            Amount
+                                            Service Fee
+                                        </th>
+                                        <th>
+                                            Payment
                                         </th>
                                         <th>
                                             Status
@@ -62,7 +65,10 @@
                                                 {{item.end_time}}
                                             </td>
                                             <td>
-                                                {{item.amount_in_cent}}
+                                                {{item.comm_in_cent}}
+                                            </td>
+                                            <td>
+                                                {{item.pay_in_cent}}
                                             </td>
                                             <td>
                                                 <p>{{item.is_remitted}} </p>

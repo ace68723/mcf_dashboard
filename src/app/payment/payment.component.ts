@@ -137,7 +137,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
           return item.end_time;
          });
          this.payments.forEach(item => {
-          item.amount_in_cent = item.amount_in_cent / 100;
+          item.pay_in_cent = item.pay_in_cent / 100;
+          item.comm_in_cent = item.comm_in_cent / 100;
         });
       }
     );
@@ -147,7 +148,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     console.log(this.pageNumArray);
   }
   setSettlement(item) {
-    item.amount_in_cent = item.amount_in_cent * 100;
+    item.pay_in_cent = item.pay_in_cent * 100;
+    item.comm_in_cent = item.comm_in_cent * 100;
     this.appService.setSettlement(item).subscribe(
       event => {
         console.log(event);

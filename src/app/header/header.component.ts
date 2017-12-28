@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit, OnChanges {
       this.currentpath = 'Merchant Detail';
     } else if (this.currentpath == '/dashboard/payment') {
       this.currentpath = 'Remittance';
-    }  else if (this.currentpath == '/dashboard/payment') {
+    }  else if (this.currentpath == '/dashboard/transaction') {
       this.currentpath = 'Transaction';
     }
   }
