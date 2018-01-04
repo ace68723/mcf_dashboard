@@ -17,7 +17,7 @@ export class CompanyService {
     const options = new RequestOptions({ headers: headers });
 
     return this.http
-      .post('https://mcfpayapi.ca/api/v1/mgt/get_merchants/', {'page_num': page_num, 'page_size': 20}, { headers: headers}
+      .post('https://mcfpayapi.ca/api/v1/mgt/get_merchants/', {'page_num': page_num, 'page_size': 8}, { headers: headers}
       ).map((response: Response) => {
         return response.json();
       }).catch(this.handleError);
@@ -31,7 +31,7 @@ export class CompanyService {
       'account_id': parseInt( account_id, 10),
       'category': category,
       'page_num': page_num,
-      'page_size': 20
+      'page_size': 8
     };
     const options = new RequestOptions({ headers: headers });
 

@@ -32,7 +32,7 @@ export class AppService {
     const options = new RequestOptions({ headers: headers });
 
     return this.http
-      .post('https://mcfpayapi.ca/api/v1/mgt/get_candidate_settle/', {'page_num': page_num, 'page_size': 20}, {headers: headers}
+      .post('https://mcfpayapi.ca/api/v1/mgt/get_candidate_settle/', {'page_num': page_num, 'page_size': 10}, {headers: headers}
       ).map((response: Response) => {
         return response.json();
       }).catch(this.handleError);
@@ -46,7 +46,7 @@ export class AppService {
 
     return this.http
       .post('https://mcfpayapi.ca/api/v1/mgt/get_hot_txns/', {'account_id': parseInt(account_id, 10),
-      'page_num': page_num, 'page_size': 20}, {headers: headers}
+      'page_num': page_num, 'page_size': 10}, {headers: headers}
       ).map((response: Response) => {
         return response.json();
       }).catch(this.handleError);
@@ -62,7 +62,7 @@ export class AppService {
       'start_time': time.iv_start,
       'end_time': time.iv_end,
       'page_num': page_num,
-      'page_size': 20
+      'page_size': 10
    };
     const options = new RequestOptions({ headers: headers });
 
@@ -115,7 +115,7 @@ export class AppService {
       'Content-Type': 'application/json'
     });
     const body = {
-      'page_size': 20
+      'page_size': 10
    };
     const options = new RequestOptions({ headers: headers });
 

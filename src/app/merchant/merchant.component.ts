@@ -32,6 +32,8 @@ export class MerchantComponent implements OnInit, AfterViewInit {
   wxc: any = false;
   newUser: any = false;
   i: any;
+  userDelete: any;
+  deviceDelete: any;
   wxInfo: any = [];
   contractInfo: any = {};
   merchantName: any;
@@ -111,16 +113,10 @@ export class MerchantComponent implements OnInit, AfterViewInit {
       event => {
         if (event.ev_data.ali) {
           this.aliInfo.push(event.ev_data.ali);
-          this.aliInfo.forEach(item => {
-            item.rate = item.rate / 100;
-          });
           this.ali = true;
         }
         if (event.ev_data.wx) {
           this.wxInfo.push(event.ev_data.wx);
-          this.wxInfo.forEach(item => {
-            item.rate = item.rate / 100;
-          });
           this.wx = true;
         }
       }
@@ -222,7 +218,6 @@ export class MerchantComponent implements OnInit, AfterViewInit {
   saveEditingAli(item) {
     item.channel = 'ali';
     item.account_id = localStorage.getItem('account_id');
-    item.rate = item.rate * 100;
     this.cpyService.setMerchantChannel(item).subscribe(
       event => {
         console.log(event);
@@ -238,7 +233,6 @@ export class MerchantComponent implements OnInit, AfterViewInit {
   saveEditingWX(item) {
     item.channel = 'wx';
     item.account_id = localStorage.getItem('account_id');
-    item.rate = item.rate * 100;
     console.log(item);
     this.cpyService.setMerchantChannel(item).subscribe(
       event => {
@@ -351,7 +345,11 @@ export class MerchantComponent implements OnInit, AfterViewInit {
     return this.pageNumArray = new Array(this.total_page);
 
   }
-  deleteDevice(item) {
+  setDeleteDevice(item) {
+    this.deviceDelete = item;
+  }
+  deleteDevice() {
+    const item = this.deviceDelete;
     item.is_deleted = 1;
     this.cpyService.setMerchantDevice(item).subscribe(
       event => {
@@ -364,7 +362,11 @@ export class MerchantComponent implements OnInit, AfterViewInit {
       this.setCategoryToDevice();
     }, 2000);
   }
-  deleteUser(item) {
+  setDeleteUser(item) {
+    this.userDelete = item;
+  }
+  deleteUser() {
+    const item = this.userDelete;
     item.is_deleted = 1;
     this.cpyService.setMerchantUser(item).subscribe(
       event => {

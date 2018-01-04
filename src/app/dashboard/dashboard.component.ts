@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   page_size: number;
   newUser: any = false;
   i: any;
+  deleteItem: any;
   total_page: number;
   message: any = false;
   dataloded: any = false;
@@ -78,7 +79,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }, 2000);
     console.log(this.pageNumArray);
   }
-  setMerchant(item) {
+  deleteMerchant(item) {
+    this.deleteItem = item;
+  }
+  setMerchant() {
+    const item = this.deleteItem;
     item.is_deleted = 1;
     this.cpyService.setMerchant(item).subscribe(
       event => {
