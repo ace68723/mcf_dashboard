@@ -8,6 +8,7 @@ var BootstrapDatepicker = function () {
         $('#m_datepicker_1, #m_datepicker_1_validate').datepicker({
             todayHighlight: true,
             orientation: "bottom left",
+            autoclose:true,
             templates: {
                 leftArrow: '<i class="la la-angle-left"></i>',
                 rightArrow: '<i class="la la-angle-right"></i>'

@@ -41,7 +41,7 @@ import { MerchantComponent } from './merchant/merchant.component';
     RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules }),
     BrowserModule,
     HttpModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [AuthGuard, AppService, ScriptLoaderService, CompanyService],
   bootstrap: [AppComponent]

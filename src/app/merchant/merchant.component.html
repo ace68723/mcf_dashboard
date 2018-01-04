@@ -1,4 +1,3 @@
-<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default"  >
     <!-- begin:: Page -->
     <div class="m-grid m-grid--hor m-grid--root m-page">
         <app-header></app-header>
@@ -32,17 +31,17 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#m_tabs_4_3" (click) = 'setCategoryToDevice();newUser = false;'>
+                                    <a class="nav-link" data-toggle="tab" href="#m_tabs_4_3" (click) = 'setCategoryToDevice();newUser = false;message = false;'>
                                         Device Info
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#m_tabs_4_4" (click) = 'setCategoryToChannel();'>
+                                    <a class="nav-link" data-toggle="tab" href="#m_tabs_4_4" (click) = 'setCategoryToChannel();newUser = false;message = false;'>
                                         Channel Info
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#m_tabs_4_5" (click) = 'setCategoryToContract();newUser = false;'>
+                                    <a class="nav-link" data-toggle="tab" href="#m_tabs_4_5" (click) = 'setCategoryToContract();newUser = false;message = false;'>
                                         Contract Info
                                     </a>
                                 </li>
@@ -53,16 +52,16 @@
                                         <tr>
                                             <td style="width:150px">Account ID</td>
                                             <td>
-                                                <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.account_id" size = '20' style = "border-radius: 10px;">
+                                                <input [disabled] = 'true' type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.account_id" size = '20' style = "border-radius: 10px;">
                                             </td>
-                                            <td style="width:150px">Contract Person</td>
+                                            <td style="width:150px">Contact Person</td>
                                             <td>
                                             <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.contact_person" style = "border-radius: 10px;">
                                             </td>
                                             
                                         </tr>
                                         <tr>
-                                          <td style="width:150px">Merchant Name</td>
+                                          <td style="width:150px">Display Name</td>
                                           <td colspan="3">
                                             <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.display_name" size = '20' style = "border-radius: 10px;">
                                           </td>
@@ -77,7 +76,8 @@
                                         <tr>
                                           <td style="width:150px">Telephone Number</td>
                                           <td>
-                                            <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.cell" style = "border-radius: 10px;">
+                                            <!-- <p-inputMask [disabled] ='editing == false' mask="(999) 999-9999" [(ngModel)]="merchantInfo.cell" placeholder="(999) 999-9999"></p-inputMask> -->
+                                            <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.cell" style = "border-radius: 10px;" placeholder = '1(111)111 - 1111'>
                                           </td>
                                           <td style="width:150px">Email</td>
                                           <td>
@@ -108,7 +108,26 @@
                                           </td>
                                           <td style="width:150px">Timezone</td>
                                             <td>
-                                                <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.timezone" size = '20' style = "border-radius: 10px;">
+                                                <select [disabled] ='editing == false' [(ngModel)] = "merchantInfo.timezone"  class="form-control m-input" id="exampleSelect1">
+                                                        <option>
+                                                            America/Vancouver 
+                                                        <option>
+                                                            America/Edmonton
+                                                        </option>
+                                                        <option>
+                                                            America/Winnipeg  
+                                                        </option>
+                                                        <option>
+                                                            America/Toronto 
+                                                        </option>
+                                                        <option>
+                                                            America/Halifax
+                                                        </option>
+                                                        <option>
+                                                            America/St_Johns 
+                                                        </option>
+                                                    </select>
+                                                <!-- <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "merchantInfo.timezone" size = '20' style = "border-radius: 10px;"> -->
                                             </td>
                                         </tr>
                                        
@@ -124,12 +143,6 @@
                                                 <table class="table m-table m-table--head-separator-primary" >
                                                     <thead>
                                                     <tr>
-                                                        <th>
-                                                            Account ID
-                                                        </th>
-                                                        <th>
-                                                            Merchant ID
-                                                        </th>
                                                         <th>
                                                             Username
                                                         </th>
@@ -155,12 +168,6 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr  *ngFor="let item of userInfo; index as i;trackBy: i" [attr.data-index]="i" >
-                                                            <td  scope="row">
-                                                                {{item.account_id}}
-                                                            </td>
-                                                            <td >
-                                                                {{item.merchant_id}}
-                                                            </td>
                                                             <td *ngIf="!item.isEditing">
                                                                 {{item.username}}
                                                             </td>
@@ -168,12 +175,18 @@
                                                                 <input class = "form-control m-input" type="text" [(ngModel)]="item.username" >                         
                                                             </td>
                                                             <td *ngIf="!item.isEditing">
-                                                                {{item.role}}
+                                                                {{item.role}}                         
+                                                            </td>
+                                                            <td *ngIf="!!item.isEditing">
+                                                                <select  [(ngModel)] = "item.role"  class="form-control m-input" id="exampleSelect1">
+                                                                    <option>
+                                                                        666 
+                                                                    <option>
+                                                                        101
+                                                                    </option> 
+                                                                </select>
                                                             </td>
                                                             
-                                                            <td *ngIf="!!item.isEditing">
-                                                                <input class = "form-control m-input" type="text" [(ngModel)]="item.role" >                          
-                                                            </td>
                                                             <td *ngIf="!item.isEditing">
                                                                 {{item.password}}
                                                             </td>
@@ -212,12 +225,6 @@
                                                             <thead>
                                                             <tr>
                                                                 <th>
-                                                                    Account ID
-                                                                </th>
-                                                                <th>
-                                                                    Merchant ID
-                                                                </th>
-                                                                <th>
                                                                     Username
                                                                 </th>
                                                                 <th>
@@ -233,13 +240,6 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr  *ngFor="let item of newUserInfo; index as i;trackBy: i" [attr.data-index]="i" >
-                                                                    <td  scope="row">
-                                                                        {{account_id}}
-                                                                    </td>
-                                                                    <td >
-                                                                        {{merchant_id}}
-                                                                    </td>
-                                                                    
                                                                     <td>
                                                                         <input class = "form-control m-input" type="text" [(ngModel)]="item.username" >                         
                                                                     </td>
@@ -247,7 +247,13 @@
                                                                        <input  class = "form-control m-input" type="text" [(ngModel)]="item.password" >                                                                    
                                                                     </td>
                                                                     <td>
-                                                                        <input class = "form-control m-input" type="text" [(ngModel)]="item.role" >                          
+                                                                        <select  [(ngModel)] = "item.role"  class="form-control m-input" id="exampleSelect1">
+                                                                            <option>
+                                                                                666 
+                                                                            <option>
+                                                                                101
+                                                                            </option> 
+                                                                        </select>                        
                                                                     </td>
                                                                     <td>
                                                                         <button class="btn btn-warning"  (click)='saveNewUser(item)'>Add</button>
@@ -264,9 +270,6 @@
                                         <table class="table m-table m-table--head-separator-primary" >
                                             <thead>
                                             <tr>
-                                                <th>
-                                                    Account ID
-                                                </th>
                                                 <th>
                                                     Device ID
                                                 </th>
@@ -290,13 +293,6 @@
                                             </thead>
                                             <tbody>
                                                 <tr  *ngFor="let item of deviceInfo; index as i;trackBy: i" [attr.data-index]="i" >
-                                                    <td *ngIf="!item.isEditing" scope="row">
-                                                        {{item.account_id}}
-                                                    </td>
-                                                    <td *ngIf="!!item.isEditing">
-                                                        <input class = "form-control m-input" type="text" [(ngModel)]='item.account_id' scope="row"> 
-                                                    </td>
-                                                    
                                                     <td *ngIf="!item.isEditing">
                                                         {{item.device_id}}
                                                     </td>
@@ -342,9 +338,6 @@
                                                 <thead>
                                                 <tr>
                                                     <th>
-                                                        Account ID
-                                                    </th>
-                                                    <th>
                                                         Device ID
                                                     </th>
                                                     <th>
@@ -354,10 +347,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr  *ngFor="let item of newDeviceInfo; index as i;trackBy: i" [attr.data-index]="i" >
-                                                        <td  scope="row">
-                                                            {{account_id}}
-                                                        </td>                                               
+                                                    <tr  *ngFor="let item of newDeviceInfo; index as i;trackBy: i" [attr.data-index]="i" >                                              
                                                         <td>
                                                             <input class = "form-control m-input" type="text" [(ngModel)]="item.device_id" >                         
                                                         </td>
@@ -381,16 +371,16 @@
                                                             <thead>
                                                             <tr>
                                                                 <th>
-                                                                    Rate
+                                                                    Ali Rate
                                                                 </th>
                                                                 <th>
                                                                     Merchant ID
                                                                 </th>
                                                                 <th>
-                                                                    Password
+                                                                    Industry Code
                                                                 </th>
                                                                 <th>
-                                                                    Name
+                                                                    Reference Name
                                                                 </th>
                                                                 
                                                                 <th *ngIf="!editing2">
@@ -451,7 +441,7 @@
                                                                 <thead>
                                                                 <tr>
                                                                 <th>
-                                                                    Rate
+                                                                    Wechat Rate
                                                                 </th>
                                                                 <th>
                                                                     Merchant ID
@@ -514,10 +504,10 @@
                                                                     Merchant ID
                                                                 </th>
                                                                 <th>
-                                                                    Password
+                                                                    Industry Code
                                                                 </th>
                                                                 <th>
-                                                                    Name
+                                                                    Reference Name
                                                                 </th>
                                                                 <th>
                                                                     Action
@@ -585,21 +575,20 @@
                                                 </div>              
                                         </div>                                    
                                 </div>
-                                <div class="tab-pane" id="m_tabs_4_5" role="tabpanel" >
-                                        <table *ngIf="dataLoded1" class="table m-table m-table--head-separator-primary" >
+                                <div class="tab-pane" id="m_tabs_4_5" role="tabpanel" *ngIf="dataLoded1">
+                                        <table  class="table m-table m-table--head-separator-primary" >
                                                 <tr>
                                                     <td style="width:150px">Account ID</td>
                                                     <td>
-                                                        <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.account_id" size = '20' style = "border-radius: 10px;">
+                                                        <input [disabled] ='true'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.account_id" style = "border-radius: 10px;">
                                                     </td>
                                                     <td style="width:150px">Device Amount</td>
                                                     <td>
                                                     <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.device_amount" style = "border-radius: 10px;">
                                                     </td>
-                                                    
                                                 </tr>
                                                 <tr>
-                                                  <td style="width:150px">Minimum Amount</td>
+                                                  <td style="width:150px">Min Settle $</td>
                                                   <td colspan="3">
                                                     <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.remit_min_in_cent" size = '20' style = "border-radius: 10px;">
                                                   </td>
@@ -607,18 +596,48 @@
                                                 <tr>
                                                   <td style="width:150px">Tip Mode</td>
                                                   <td colspan="3">
-                                                    <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.tip_mode" style = "border-radius: 10px;">
+                                                        <div class="m-radio-inline">
+                                                                <div class="m-radio-inline">
+                                                                        <label class="m-radio">
+                                                                            <input type="radio" [disabled] ='editing == false' [checked]="contractInfo.tip_mode" (change)="changeTip()" name="example_8" value="1" data-md-icheck>
+                                                                            Yes
+                                                                            <span></span>
+                                                                        </label>
+                                                                        <label class="m-radio">
+                                                                            <input type="radio" [disabled] ='editing == false' [checked]="!contractInfo.tip_mode" (change)="changeTip()" name="example_8" value="2" data-md-icheck>
+                                                                            No
+                                                                            <span></span>
+                                                                        </label>
+                                                                        
+                                                                    </div>
+                                                               
+                                                            </div>
+                                                    <!-- <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.tip_mode" style = "border-radius: 10px;"> -->
                                                   </td>
                                                   
                                                 </tr>
                                                 <tr>
                                                   <td style="width:150px">Start Date</td>
                                                   <td>
-                                                    <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.start_date" style = "border-radius: 10px;">
+                                                        <div class='input-group date' id='m_datepicker_1_validate' >
+                                                                <input [disabled] ='editing == false' type='text' class="form-control m-input" readonly placeholder="Select date" value = 'contractInfo.start_date' [(ngModel)]="contractInfo.start_date"
+                                                                 #ippp [ngModelOptions]="{standalone: true}"/> 
+                                                                <span class="input-group-addon">
+                                                                    <i class="la la-calendar-check-o"></i>
+                                                                </span>
+                                                        </div>
+                                                    <!-- <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.start_date" style = "border-radius: 10px;"> -->
                                                   </td>
                                                   <td style="width:150px">End Date</td>
                                                   <td>
-                                                    <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.end_date" style = "border-radius: 10px;">
+                                                        <div class='input-group date' id='m_datepicker_1_validate' >
+                                                                <input [disabled] ='editing == false' type='text' class="form-control m-input" readonly placeholder="Select date" value = 'contractInfo.end_date' [(ngModel)]="contractInfo.end_date"
+                                                                 #ipppp [ngModelOptions]="{standalone: true}"/> 
+                                                                <span class="input-group-addon">
+                                                                    <i class="la la-calendar-check-o"></i>
+                                                                </span>
+                                                        </div>
+                                                    <!-- <input [disabled] ='editing == false'  type="text"  class="form-control date-set end-time2" [(ngModel)] = "contractInfo.end_date" style = "border-radius: 10px;"> -->
                                                   </td>
                                                 </tr>
                                                 <tr>
@@ -651,7 +670,7 @@
                                                
                                         </table>
                                         <div style="display: inline-flex">
-                                                <button class="btn btn-warning" *ngIf="!editing" (click) = 'editing = !editing' > Edit</button>
+                                                <button class="btn btn-warning" *ngIf="!editing" (click) = 'editing = !editing;loadScript()' > Edit</button>
                                                 <button class="btn btn-warning" *ngIf="editing" (click) = 'editing = !editing;saveCategoryContract()'  style = 'margin-right: 20px'> Save</button>
                                                 <button class="btn btn-warning" *ngIf="editing" (click) = 'editing = !editing;setCategoryToContract()' > Cancel</button>
                                         </div>                                
@@ -664,7 +683,6 @@
             </div>
         </div>
     </div>
-</body> 
 
 
 

@@ -68,6 +68,10 @@ export class CompanyService {
       }).catch(this.handleError);
   }
   setMerchantContract(contractInfo) {
+    // const startTime = contractInfo.start_date.split('/');
+    // const endTime = contractInfo.end_date.split('/');
+    // contractInfo.start_date = new Date(startTime[2], startTime[0], startTime[1]).getTime();
+    // contractInfo.end_date = new Date(endTime[2], endTime[0], endTime[1]).getTime();
     const headers = new Headers({
       'Auth-Token': localStorage.getItem('token'),
       'Content-Type': 'application/json'

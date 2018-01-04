@@ -1,4 +1,3 @@
-<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default"  >
 	<!-- begin:: Page -->
 	<div class="m-grid m-grid--hor m-grid--root m-page">
         <app-header></app-header>
@@ -21,14 +20,15 @@
                         <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
                             <div class="m-portlet__head-tools">
                                 <div style = 'display:inline-flex; margin-bottom:20px;'>
+                                       
                                     <div class='input-group date' id='m_datepicker_1_validate' >
-                                        <input type='text' class="form-control m-input" readonly placeholder="Select date" value = 'time.iv_start'[(ngModel)]="time.iv_start" #ip [ngModelOptions]="{standalone: true}"/> 
+                                        <input type='text' class="form-control m-input"  placeholder="Select date" /> 
                                         <span class="input-group-addon">
                                             <i class="la la-calendar-check-o"></i>
                                         </span>
                                     </div>
                                     <div class='input-group date' id='m_datepicker_1_validate' style="margin-left:20px;margin-right:20px">
-                                        <input type='text' class="form-control m-input" readonly placeholder="Select date" value = 'time.end'[(ngModel)]="time.end" #ipp [ngModelOptions]="{standalone: true}"/> 
+                                        <input type='text' class="form-control m-input"  placeholder="Select date" #ivend /> 
                                         <span class="input-group-addon">
                                             <i class="la la-calendar-check-o"></i>
                                         </span>
@@ -102,6 +102,4 @@
                 </div>
             </div>
         </div>
-        <app-footer></app-footer>
     </div>
-</body> 

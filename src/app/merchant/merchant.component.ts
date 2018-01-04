@@ -1,5 +1,5 @@
 import { CompanyService } from './../service/company.service';
-import { Component, OnChanges, SimpleChanges, Input, OnInit, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { ScriptLoaderService } from '../../js/script-loader.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -11,6 +11,8 @@ import { AppService } from '../app.service';
 })
 
 export class MerchantComponent implements OnInit, AfterViewInit {
+  @ViewChild('ippp') ippp: ElementRef;
+  @ViewChild('ipppp') ipppp: ElementRef;
   page_num: number;
   category: any;
   companyInfo: any = [];
@@ -22,7 +24,7 @@ export class MerchantComponent implements OnInit, AfterViewInit {
   page_size: number;
   account_id: any;
   total_page: number;
-  merchantInfo: any;
+  merchantInfo: any = [];
   userInfo: any;
   deviceInfo: any;
   aliInfo: any = [];
@@ -31,7 +33,7 @@ export class MerchantComponent implements OnInit, AfterViewInit {
   newUser: any = false;
   i: any;
   wxInfo: any = [];
-  contractInfo: any;
+  contractInfo: any = {};
   merchantName: any;
   editing: any = false;
   dataLoded: any = false;
@@ -54,9 +56,16 @@ export class MerchantComponent implements OnInit, AfterViewInit {
       this.setCategoryToBasic();
   }
   ngAfterViewInit() {
-
   }
 // init
+  changeTip() {
+    this.contractInfo.tip_mode = !this.contractInfo.tip_mode;
+    console.log(this.contractInfo.tip_mode);
+  }
+  loadScript() {
+    this._script.load('app-merchant',
+    'assets/bootstrap-datepicker.js');
+  }
   setCategoryToBasic() {
       this.category = 'basic';
       this.cpyService.getMerchantInfo(this.page_num, this.category, this.account_id).subscribe(
@@ -100,13 +109,18 @@ export class MerchantComponent implements OnInit, AfterViewInit {
     this.category = 'channel';
     this.cpyService.getMerchantInfo(this.page_num, this.category, this.account_id).subscribe(
       event => {
-        console.log(event);
         if (event.ev_data.ali) {
           this.aliInfo.push(event.ev_data.ali);
+          this.aliInfo.forEach(item => {
+            item.rate = item.rate / 100;
+          });
           this.ali = true;
         }
         if (event.ev_data.wx) {
           this.wxInfo.push(event.ev_data.wx);
+          this.wxInfo.forEach(item => {
+            item.rate = item.rate / 100;
+          });
           this.wx = true;
         }
       }
@@ -118,9 +132,12 @@ export class MerchantComponent implements OnInit, AfterViewInit {
       event => {
         this.contractInfo = event.ev_data;
         console.log(this.contractInfo);
-        this.dataLoded1 = true;
-    }
+      }
     );
+    if (this.contractInfo.tip_mode) {
+      this.contractInfo.tip_mode = true;
+    } else {this.contractInfo = false; }
+        this.dataLoded1 = true;
   }
 
 // init end
@@ -175,6 +192,11 @@ export class MerchantComponent implements OnInit, AfterViewInit {
     }, 2000);
   }
   saveCategoryContract() {
+    this.contractInfo.start_date = this.ippp.nativeElement.value;
+    this.contractInfo.end_date = this.ipppp.nativeElement.value;
+    if (this.contractInfo.tip_mode) {
+      this.contractInfo.tip_mode = 'display';
+    } else {this.contractInfo.tip_mode = ''; }
     this.cpyService.setMerchantContract(this.contractInfo).subscribe(
       event => {
         console.log(event);
@@ -200,6 +222,7 @@ export class MerchantComponent implements OnInit, AfterViewInit {
   saveEditingAli(item) {
     item.channel = 'ali';
     item.account_id = localStorage.getItem('account_id');
+    item.rate = item.rate * 100;
     this.cpyService.setMerchantChannel(item).subscribe(
       event => {
         console.log(event);
@@ -215,6 +238,7 @@ export class MerchantComponent implements OnInit, AfterViewInit {
   saveEditingWX(item) {
     item.channel = 'wx';
     item.account_id = localStorage.getItem('account_id');
+    item.rate = item.rate * 100;
     console.log(item);
     this.cpyService.setMerchantChannel(item).subscribe(
       event => {

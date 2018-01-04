@@ -9,8 +9,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 
 export class TransactionComponent implements OnInit, AfterViewInit {
-    @ViewChild('ip') ip: ElementRef;
-    @ViewChild('ipp') ipp: ElementRef;
+    @ViewChild('ivstart') ivstart: ElementRef;
+    @ViewChild('ivend') ivend: ElementRef;
     page_num: number;
     page_size: number;
     total_page: number;
@@ -18,8 +18,9 @@ export class TransactionComponent implements OnInit, AfterViewInit {
     merchantname: any;
     status: any;
     i: any;
-    time: any = [
-    ];
+    time: any = [];
+    start_time: any;
+    end_time: any;
     account_id: any;
     displaytime: any = [];
     pageNumArray: any = [];
@@ -34,7 +35,7 @@ export class TransactionComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this._script.load('app-transaction',
+      this._script.load('app-transaction',
         'assets/bootstrap-datepicker.js');
     }
     getNumber() {
@@ -64,18 +65,6 @@ export class TransactionComponent implements OnInit, AfterViewInit {
             }
           });
           this.categories.forEach(item => {
-            const a = new Date(item.time * 1000);
-            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            const year = a.getFullYear();
-            const month = months[a.getMonth()];
-            const date = a.getDate();
-            const hour = a.getHours();
-            const min = a.getMinutes();
-            const sec = a.getSeconds();
-            item.time = year + ' ' + month + ' ' + date + ' ' + hour + ':' + min + ':' + sec ;
-            return item.time;
-          });
-          this.categories.forEach(item => {
             if (item.is_refund == true) {
                   item.is_refund = '退款';
             } else {
@@ -93,17 +82,17 @@ export class TransactionComponent implements OnInit, AfterViewInit {
       console.log(this.pageNumArray);
     }
     getBillHistory() {
-
-        this.time.iv_start = this.ip.nativeElement.value;
-        this.time.iv_end = this.ipp.nativeElement.value;
-        console.log(this.time.iv_start);
-        console.log(this.time.iv_end);
-        this.displaytime.iv_start = new Date(this.time.iv_start).getTime() / 1000;
-        this.displaytime.iv_end = new Date(this.time.iv_end).getTime() / 1000;
-
-        console.log(this.displaytime.iv_start);
-        console.log(this.displaytime.iv_end);
-        this.appService.getBillHistory(this.displaytime, this.page_num, this.account_id).subscribe(
+        console.log(this.ivstart.nativeElement.value);
+        console.log(this.ivend.nativeElement.value);
+        this.time.iv_start = this.ivstart.nativeElement.value;
+        this.time.iv_end = this.ivend.nativeElement.value;
+        this.time.iv_start = this.time.iv_start.split('/');
+        this.time.iv_start = this.time.iv_start[0] + ',' + this.time.iv_start[1] + ',' + this.time.iv_start[2];
+        this.time.iv_start = new Date(this.time.iv_start).getTime();​
+        this.time.iv_end = this.time.iv_end.split('/');
+        this.time.iv_end = this.time.iv_end[0] + ',' + this.time.iv_end[1] + ',' + this.time.iv_end[2];
+        this.time.iv_end = new Date(this.time.iv_end).getTime();​
+        this.appService.getBillHistory(this.time, this.page_num, this.account_id).subscribe(
           event => {
             console.log(event);
             this.categories = event.ev_data.recs;
@@ -117,18 +106,6 @@ export class TransactionComponent implements OnInit, AfterViewInit {
                 } else {
                   item.vendor_channel = '支付宝';
                 }
-              });
-              this.categories.forEach(item => {
-                const a = new Date(item.time * 1000);
-                const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                const year = a.getFullYear();
-                const month = months[a.getMonth()];
-                const date = a.getDate();
-                const hour = a.getHours();
-                const min = a.getMinutes();
-                const sec = a.getSeconds();
-                item.time = year + ' ' + month + ' ' + date + ' ' + hour + ':' + min + ':' + sec ;
-                return item.time;
               });
               this.categories.forEach(item => {
                 if (item.is_refund == true) {

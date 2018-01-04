@@ -21,13 +21,12 @@
       "styles": [
         "styles.css",
         "css/vendors.bundle.css",
-        "css/fullcalendar.bundle.css",
         "css/style.bundle.css"    
       ],
       "scripts": [
-        "js/vendors.bundle.js",
-        "js/scripts.bundle.js",
-        "js/bootstrap-datepicker.js"
+        "assets/vendors.bundle.js",
+        "assets/scripts.bundle.js",
+        "assets/bootstrap-datepicker.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
