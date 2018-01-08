@@ -139,6 +139,8 @@ export class CompanyService {
     if (!item.sub_mch_industry) {
       item.sub_mch_industry = 0;
     }
+    console.log(item.rate);
+    item.rate = (item.rate * 1000) / 10;
     const headers = new Headers({
       'Auth-Token': localStorage.getItem('token'),
       'Content-Type': 'application/json'
@@ -146,7 +148,7 @@ export class CompanyService {
     const body = {
       'account_id': parseInt( item.account_id, 10),
       'channel': item.channel,
-      'rate': parseInt( item.rate, 10),
+      'rate': parseFloat(item.rate),
       'sub_mch_id': item.sub_mch_id,
       'sub_mch_name': item.sub_mch_name,
       'sub_mch_industry': parseInt( item.sub_mch_industry, 10),

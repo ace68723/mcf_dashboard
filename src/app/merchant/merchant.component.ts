@@ -114,10 +114,16 @@ export class MerchantComponent implements OnInit, AfterViewInit {
         if (event.ev_data.ali) {
           this.aliInfo.push(event.ev_data.ali);
           this.ali = true;
+          this.aliInfo.forEach(item => {
+            item.rate = item.rate / 100;
+          });
         }
         if (event.ev_data.wx) {
           this.wxInfo.push(event.ev_data.wx);
           this.wx = true;
+          this.wxInfo.forEach(item => {
+            item.rate = item.rate / 100;
+          });
         }
       }
     );
