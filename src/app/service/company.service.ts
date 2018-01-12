@@ -146,12 +146,10 @@ export class CompanyService {
       'Content-Type': 'application/json'
     });
     const body = {
-      'account_id': parseInt( item.account_id, 10),
+      'account_id': parseInt(item.account_id, 10),
       'channel': item.channel,
       'rate': parseFloat(item.rate),
-      'sub_mch_id': item.sub_mch_id,
       'sub_mch_name': item.sub_mch_name,
-      'sub_mch_industry': parseInt( item.sub_mch_industry, 10),
     };
     const options = new RequestOptions({ headers: headers });
 
