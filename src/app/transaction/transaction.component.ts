@@ -82,8 +82,6 @@ export class TransactionComponent implements OnInit, AfterViewInit {
       console.log(this.pageNumArray);
     }
     getBillHistory() {
-        console.log(this.ivstart.nativeElement.value);
-        console.log(this.ivend.nativeElement.value);
         this.time.iv_start = this.ivstart.nativeElement.value;
         this.time.iv_end = this.ivend.nativeElement.value;
         this.time.iv_start = this.time.iv_start.split('/');

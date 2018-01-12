@@ -49,9 +49,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   addNewMerchant() {
     this.cpyService.addNewMerchant(this.new_merchant_id).subscribe(
       event => {
-        if (event.ev_error == 0) {
           this.message = true;
-        } 
+      },
+      event => {
+        console.log(event.json());
+        alert('Duplicate MerchantID. Please check again or contact customer service');
       }
     );
     setTimeout(() => {
@@ -71,7 +73,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.page_num = event.ev_data.page_num;
         this.total_page = event.ev_data.total_page;
         this.dataloded = true;
-        console.log(this.total_page);
       }
     );
     setTimeout(() => {

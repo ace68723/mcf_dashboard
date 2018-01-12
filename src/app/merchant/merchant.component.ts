@@ -82,10 +82,13 @@ export class MerchantComponent implements OnInit, AfterViewInit {
     this.category = 'user';
     this.cpyService.getMerchantInfo(this.page_num, this.category, this.account_id).subscribe(
       event => {
-        this.merchant_id = event.ev_data.recs[0].merchant_id;
-        this.userInfo = event.ev_data.recs;
-        console.log(this.userInfo);
-        this.total_page = event.ev_data.total_page;
+        console.log(event);
+        if (event.ev_data.recs !== []) {
+          this.merchant_id = event.ev_data.recs[0].merchant_id;
+          this.userInfo = event.ev_data.recs;
+          console.log(this.userInfo);
+          this.total_page = event.ev_data.total_page;
+        }
       }
     );
     setTimeout(() => {
@@ -133,6 +136,7 @@ export class MerchantComponent implements OnInit, AfterViewInit {
     this.cpyService.getMerchantInfo(this.page_num, this.category, this.account_id).subscribe(
       event => {
         this.contractInfo = event.ev_data;
+        this.contractInfo.remit_min_in_cent = this.contractInfo.remit_min_in_cent / 100;
         console.log(this.contractInfo);
       }
     );
@@ -187,6 +191,12 @@ export class MerchantComponent implements OnInit, AfterViewInit {
     this.cpyService.setMerchantInfo(this.merchantInfo).subscribe(
       event => {
         console.log(event);
+      },
+      event => {
+        console.log(event)
+        if (event.ev_context === 'check failed:timezone, checker:[{}]') {
+          alert('Miss TimeZone');
+        }
       }
     );
     setTimeout(() => {
@@ -380,6 +390,13 @@ export class MerchantComponent implements OnInit, AfterViewInit {
         console.log(event);
         item.isEditing = false;
         this.editing2 = false;
+      },
+      event => {
+      if (event.ev_context == 'check failed:role, checker:["is_int",[101,365]]') {
+          alert('Can`t Delete Manager Account');
+        } else if (event.ev_context == 'possibly duplicated username.') {
+          alert('Duplicate Username. Please check again.');
+        }
       }
     );
     setTimeout(() => {
