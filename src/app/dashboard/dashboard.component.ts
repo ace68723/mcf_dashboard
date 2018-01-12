@@ -42,7 +42,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.cpyService.getMerchants(i + 1).subscribe(
       event => {
         this.companyInfo = event.ev_data.recs;
-
       }
     );
   }
@@ -73,6 +72,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.page_num = event.ev_data.page_num;
         this.total_page = event.ev_data.total_page;
         this.dataloded = true;
+      },
+      event => {
+        if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
+        }
       }
     );
     setTimeout(() => {
@@ -89,6 +95,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.cpyService.setMerchant(item).subscribe(
       event => {
         console.log(event);
+      },
+      event => {
+        if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
+        }
       }
     );
     setTimeout(() => {

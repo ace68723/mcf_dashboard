@@ -75,6 +75,13 @@ export class MerchantComponent implements OnInit, AfterViewInit {
           this.merchantInfo = event.ev_data;
           console.log(this.merchantInfo);
           this.dataLoded = true;
+        },
+        event => {
+          if (event.ev_error === 10011) {
+            alert('Your account has been logged in from another device.');
+          } else if (event.ev_error === 10001) {
+            alert('Token Expires. Please login again.');
+          }
         }
       );
   }
@@ -89,6 +96,13 @@ export class MerchantComponent implements OnInit, AfterViewInit {
           console.log(this.userInfo);
           this.total_page = event.ev_data.total_page;
         }
+      },
+      event => {
+        if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
+        }
       }
     );
     setTimeout(() => {
@@ -102,6 +116,13 @@ export class MerchantComponent implements OnInit, AfterViewInit {
         this.deviceInfo = event.ev_data.recs;
         console.log(this.deviceInfo);
         this.total_page = event.ev_data.total_page;
+      },
+      event => {
+        if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
+        }
       }
     );
     setTimeout(() => {
@@ -128,6 +149,13 @@ export class MerchantComponent implements OnInit, AfterViewInit {
             item.rate = item.rate / 100;
           });
         }
+      },
+      event => {
+        if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
+        }
       }
     );
   }
@@ -138,6 +166,13 @@ export class MerchantComponent implements OnInit, AfterViewInit {
         this.contractInfo = event.ev_data;
         this.contractInfo.remit_min_in_cent = this.contractInfo.remit_min_in_cent / 100;
         console.log(this.contractInfo);
+      },
+      event => {
+        if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
+        }
       }
     );
     if (this.contractInfo.tip_mode) {
@@ -183,6 +218,13 @@ export class MerchantComponent implements OnInit, AfterViewInit {
           item.isEditing = false;
           this.editing2 = false;
         }
+      },
+      event => {
+        if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
+        }
       }
     );
 
@@ -193,9 +235,12 @@ export class MerchantComponent implements OnInit, AfterViewInit {
         console.log(event);
       },
       event => {
-        console.log(event)
         if (event.ev_context === 'check failed:timezone, checker:[{}]') {
           alert('Miss TimeZone');
+        } else if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
         }
       }
     );
@@ -213,6 +258,13 @@ export class MerchantComponent implements OnInit, AfterViewInit {
     this.cpyService.setMerchantContract(this.contractInfo).subscribe(
       event => {
         console.log(event);
+      },
+      event => {
+        if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
+        }
       }
     );
     setTimeout(() => {
@@ -225,6 +277,13 @@ export class MerchantComponent implements OnInit, AfterViewInit {
         console.log(event);
         item.isEditing = false;
         this.editing2 = false;
+      },
+      event => {
+        if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
+        }
       }
     );
     setTimeout(() => {
@@ -241,6 +300,13 @@ export class MerchantComponent implements OnInit, AfterViewInit {
         item.isEditing = false;
         this.editing2 = false;
         this.editing3 = false;
+      },
+      event => {
+        if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
+        }
       }
     );
     setTimeout(() => {
@@ -257,6 +323,13 @@ export class MerchantComponent implements OnInit, AfterViewInit {
         item.isEditing = false;
         this.editing2 = false;
         this.editing3 = false;
+      },
+      event => {
+        if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
+        }
       }
     );
     setTimeout(() => {
@@ -274,8 +347,15 @@ export class MerchantComponent implements OnInit, AfterViewInit {
     this.cpyService.addNewUser(item).subscribe(
       event => {
         this.password = event.ev_data;
-        if (event.ev_error == 0) {
+        if (event.ev_error === 0) {
           this.message = true;
+        }
+      },
+      event => {
+        if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
         }
       }
     );
@@ -291,8 +371,15 @@ export class MerchantComponent implements OnInit, AfterViewInit {
     item.account_id = this.account_id;
     this.cpyService.addNewDevice(item).subscribe(
       event => {
-        if (event.ev_error == 0) {
+        if (event.ev_error === 0) {
           this.message = true;
+        }
+      },
+      event => {
+        if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
         }
       }
     );
@@ -313,8 +400,15 @@ export class MerchantComponent implements OnInit, AfterViewInit {
     item.account_id = localStorage.getItem('account_id');
     this.cpyService.setMerchantChannel(item).subscribe(
       event => {
-        if (event.ev_error == 0) {
+        if (event.ev_error === 0) {
           this.message = true;
+        }
+      },
+      event => {
+        if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
         }
       }
     );
@@ -327,8 +421,15 @@ export class MerchantComponent implements OnInit, AfterViewInit {
     item.account_id = localStorage.getItem('account_id');
     this.cpyService.setMerchantChannel(item).subscribe(
       event => {
-        if (event.ev_error == 0) {
+        if (event.ev_error === 0) {
           this.message = true;
+        }
+      },
+      event => {
+        if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
         }
       }
     );
@@ -338,7 +439,7 @@ export class MerchantComponent implements OnInit, AfterViewInit {
   }
 // new end
   goToPage(i) {
-    if (this.category == 'user') {
+    if (this.category === 'user') {
       this.page_num = i + 1;
       this.cpyService.getMerchantInfo(this.page_num, this.category, this.account_id).subscribe(
         event => {
@@ -346,14 +447,28 @@ export class MerchantComponent implements OnInit, AfterViewInit {
           this.userInfo = event.ev_data.recs;
           console.log(this.userInfo);
           this.total_page = event.ev_data.total_page;
+        },
+        event => {
+          if (event.ev_error === 10011) {
+            alert('Your account has been logged in from another device.');
+          } else if (event.ev_error === 10001) {
+            alert('Token Expires. Please login again.');
+          }
         }
       );
-    } else if ( this.category == 'device') {
+    } else if ( this.category === 'device') {
       this.cpyService.getMerchantInfo(this.page_num, this.category, this.account_id).subscribe(
         event => {
           this.deviceInfo = event.ev_data.recs;
           console.log(this.deviceInfo);
           this.total_page = event.ev_data.total_page;
+        },
+        event => {
+          if (event.ev_error === 10011) {
+            alert('Your account has been logged in from another device.');
+          } else if (event.ev_error === 10001) {
+            alert('Token Expires. Please login again.');
+          }
         }
       );
     }
@@ -373,6 +488,13 @@ export class MerchantComponent implements OnInit, AfterViewInit {
         console.log(event);
         item.isEditing = false;
         this.editing2 = false;
+      },
+      event => {
+        if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
+        }
       }
     );
     setTimeout(() => {
@@ -392,10 +514,14 @@ export class MerchantComponent implements OnInit, AfterViewInit {
         this.editing2 = false;
       },
       event => {
-      if (event.ev_context == 'check failed:role, checker:["is_int",[101,365]]') {
+      if (event.ev_context === 'check failed:role, checker:["is_int",[101,365]]') {
           alert('Can`t Delete Manager Account');
-        } else if (event.ev_context == 'possibly duplicated username.') {
+        } else if (event.ev_context === 'possibly duplicated username.') {
           alert('Duplicate Username. Please check again.');
+        } else if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
         }
       }
     );

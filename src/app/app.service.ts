@@ -143,7 +143,7 @@ export class AppService {
       }).catch(this.handleError);
   }
   private handleError(error: Response) {
-    return Observable.throw(error.statusText);
+    return Observable.throw(error.json());
   }
 
 }
