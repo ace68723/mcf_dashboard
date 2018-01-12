@@ -79,6 +79,7 @@ export class CompanyService {
     const body = {
       'account_id': contractInfo.account_id,
       'contract_price': contractInfo.contract_price,
+      'device_amount': parseInt(contractInfo.device_amount, 10),
       'tip_mode': contractInfo.tip_mode,
       'remit_min_in_cent': parseInt( contractInfo.remit_min_in_cent, 10),
       'start_date': contractInfo.start_date,

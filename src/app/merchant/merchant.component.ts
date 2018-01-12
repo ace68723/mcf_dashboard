@@ -199,6 +199,7 @@ export class MerchantComponent implements OnInit, AfterViewInit {
     if (this.contractInfo.tip_mode) {
       this.contractInfo.tip_mode = 'display';
     } else {this.contractInfo.tip_mode = ''; }
+    console.log(this.contractInfo);
     this.cpyService.setMerchantContract(this.contractInfo).subscribe(
       event => {
         console.log(event);
