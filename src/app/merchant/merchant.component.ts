@@ -264,6 +264,8 @@ export class MerchantComponent implements OnInit, AfterViewInit {
           alert('Your account has been logged in from another device.');
         } else if (event.ev_error === 10001) {
           alert('Token Expires. Please login again.');
+        } else if (event.ev_context === 'check failed:device_amount, checker:["is_int"]') {
+          alert('Missing Device Amount');
         }
       }
     );

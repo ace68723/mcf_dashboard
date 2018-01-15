@@ -136,6 +136,8 @@ export class CompanyService {
   setMerchantChannel(item) {
     if (!item.sub_mch_industry) {
       item.sub_mch_industry = 0;
+    } else {
+      item.sub_mch_industry = parseInt(item.sub_mch_industry, 10);
     }
     console.log(item.rate);
     item.rate = (item.rate * 1000) / 10;
@@ -147,7 +149,8 @@ export class CompanyService {
       'account_id': parseInt(item.account_id, 10),
       'channel': item.channel,
       'rate': parseFloat(item.rate),
-      'sub_mch_name': item.sub_mch_name,
+      'sub_mch_id': item.sub_mch_id,
+      'sub_mch_industry': item.sub_mch_industry,
     };
     const options = new RequestOptions({ headers: headers });
 
