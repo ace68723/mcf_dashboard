@@ -32,6 +32,7 @@ export class SettlementComponent implements OnInit, AfterViewInit {
 
   }
   goToPage(i) {
+    console.log(i);
     this.appService.getSettlements(i + 1).subscribe(
       event => {
         console.log(event);

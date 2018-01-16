@@ -24,7 +24,7 @@
                                     <thead>
                                     <tr>
                                         <th>
-                                                    Account ID
+                                            Account ID
                                         </th>
                                         <th>
                                             Settlement ID
@@ -42,6 +42,9 @@
                                             Payment
                                         </th>
                                         <th>
+                                            Total
+                                        </th>
+                                        <th>
                                             Status
                                         </th>
                                         <th>
@@ -53,7 +56,7 @@
                                     <tbody>
                                         <tr  *ngFor="let item of payments; index as i;trackBy: i" [attr.data-index]="i" >
                                             <td scope="row">
-                                                        {{item.account_id}}
+                                                {{item.account_id}} ({{item.merchant_id}})
                                             </td>
                                             <td scope="row">
                                                 {{item.settle_id}}
@@ -71,6 +74,9 @@
                                                 {{item.pay_in_cent}}
                                             </td>
                                             <td>
+                                                {{item.amount_in_cent}}
+                                            </td>
+                                            <td>
                                                 <p>{{item.is_remitted}} </p>
                                             </td>
                                             <td>
@@ -81,7 +87,7 @@
                                     </tbody>
                                 </table>
                                 <div style="display: inline-flex" *ngFor="let item of pageNumArray;  index as i;trackBy: i" [attr.data-index]="i">
-                                        <a class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" (click) = 'goToPage(i)'>
+                                        <a style="margin-right:7px" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" (click) = 'goToPage(i)'>
                                                 <p style="height: 100%;
                                                 margin-top: 27%;">{{i+1}}</p>
                                         </a>

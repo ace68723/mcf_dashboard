@@ -115,6 +115,7 @@ export class AppService {
       'Content-Type': 'application/json'
     });
     const body = {
+      'page_num': page_num,
       'page_size': 10
    };
     const options = new RequestOptions({ headers: headers });

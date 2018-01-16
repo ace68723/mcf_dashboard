@@ -58,35 +58,17 @@ export class PaymentComponent implements OnInit, AfterViewInit {
         this.payments.forEach(item => {
           const a = new Date(item.start_time * 1000);
           item.start_time = a.toLocaleString();
-          // const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-          // const year = a.getFullYear();
-          // const month = months[a.getMonth()];
-          // const date = a.getDate();
-          // const hour = a.getHours();
-          // const min = a.getMinutes();
-          // let sec = a.getSeconds();
-          // if (sec < 10) {
-          //   sec = '0' + sec;
-          // }
-          // item.start_time = year + ' ' + month + ' ' + date + ' ' + hour + ':' + min + ':' + sec ;
           return item.start_time;
          });
          this.payments.forEach(item => {
           const a = new Date(item.end_time * 1000);
           item.end_time = a.toLocaleString();
-
-          // const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-          // const year = a.getFullYear();
-          // const month = months[a.getMonth()];
-          // const date = a.getDate();
-          // const hour = a.getHours();
-          // const min = a.getMinutes();
-          // const sec = a.getSeconds();
-          // item.end_time = year + ' ' + month + ' ' + date + ' ' + hour + ':' + min + ':' + sec ;
           return item.end_time;
          });
          this.payments.forEach(item => {
-           item.amount_in_cent = item.amount_in_cent / 100;
+          item.pay_in_cent = item.pay_in_cent / 100;
+          item.comm_in_cent = item.comm_in_cent / 100;
+          item.amount_in_cent = item.amount_in_cent / 100;
          });
       }
     );
@@ -109,36 +91,17 @@ export class PaymentComponent implements OnInit, AfterViewInit {
         this.payments.forEach(item => {
           const a = new Date(item.start_time * 1000);
           item.start_time = a.toLocaleString();
-          // const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-          // const year = a.getFullYear();
-          // const month = months[a.getMonth()];
-          // const date = a.getDate();
-          // const hour = a.getHours();
-          // const min = a.getMinutes();
-          // let sec = a.getSeconds();
-          // if (sec < 10) {
-          //   sec = '0' + sec;
-          // }
-          // item.start_time = year + ' ' + month + ' ' + date + ' ' + hour + ':' + min + ':' + sec ;
           return item.start_time;
          });
          this.payments.forEach(item => {
           const a = new Date(item.end_time * 1000);
           item.end_time = a.toLocaleString();
-
-          // const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-          // const year = a.getFullYear();
-          // const month = months[a.getMonth()];
-          // const date = a.getDate();
-          // const hour = a.getHours();
-          // const min = a.getMinutes();
-          // const sec = a.getSeconds();
-          // item.end_time = year + ' ' + month + ' ' + date + ' ' + hour + ':' + min + ':' + sec ;
           return item.end_time;
          });
          this.payments.forEach(item => {
           item.pay_in_cent = item.pay_in_cent / 100;
           item.comm_in_cent = item.comm_in_cent / 100;
+          item.amount_in_cent = item.amount_in_cent / 100;
         });
       }
     );
