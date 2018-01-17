@@ -60,8 +60,10 @@ export class OrdersComponent implements OnInit, AfterViewInit {
         console.log(this.page_num);
       }
     );
-    this.getNumber();
-
+    setTimeout(() => {
+      this.getNumber();
+    }, 2000);
+    console.log(this.pageNumArray);
   }
 
 }

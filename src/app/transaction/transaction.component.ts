@@ -84,12 +84,6 @@ export class TransactionComponent implements OnInit, AfterViewInit {
     getBillHistory() {
         this.time.iv_start = this.ivstart.nativeElement.value;
         this.time.iv_end = this.ivend.nativeElement.value;
-        this.time.iv_start = this.time.iv_start.split('/');
-        this.time.iv_start = this.time.iv_start[0] + ',' + this.time.iv_start[1] + ',' + this.time.iv_start[2];
-        this.time.iv_start = new Date(this.time.iv_start).getTime();​
-        this.time.iv_end = this.time.iv_end.split('/');
-        this.time.iv_end = this.time.iv_end[0] + ',' + this.time.iv_end[1] + ',' + this.time.iv_end[2];
-        this.time.iv_end = new Date(this.time.iv_end).getTime();​
         this.appService.getBillHistory(this.time, this.page_num, this.account_id).subscribe(
           event => {
             console.log(event);
@@ -119,7 +113,5 @@ export class TransactionComponent implements OnInit, AfterViewInit {
         }, 2000);
         console.log(this.pageNumArray);
       }
-    convertTime(time) {
-        Math.round(new Date('time').getTime() / 1000);
-    }
+
 }
