@@ -70,6 +70,9 @@ export class SettlementComponent implements OnInit, AfterViewInit {
           // item.end_time = year + ' ' + month + ' ' + date + ' ' + hour + ':' + min + ':' + sec ;
           return item.end_time;
          });
+         this.settlments.forEach(item => {
+          item.amount_in_cent = item.amount_in_cent / 100;
+        });
       }
     );
   }

@@ -106,6 +106,9 @@ export class TransactionComponent implements OnInit, AfterViewInit {
                   item.is_refund = '付款';
                 }
               });
+              this.categories.forEach(item => {
+                item.amount_in_cent = item.amount_in_cent / 100;
+              });
           }
         );
         setTimeout(() => {
