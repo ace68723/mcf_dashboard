@@ -87,7 +87,7 @@
                                     </tbody>
                                 </table>
                                 <div style="display: inline-flex" *ngFor="let item of pageNumArray;  index as i;trackBy: i" [attr.data-index]="i">
-                                        <a style="margin-right:7px" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" (click) = 'goToPage(i)'>
+                                        <a [class.some-class]="i+1 === page_num" style="margin-right:7px" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" (click) = 'goToPage(i)'>
                                                 <p style="height: 100%;
                                                 margin-top: 27%;">{{i+1}}</p>
                                         </a>

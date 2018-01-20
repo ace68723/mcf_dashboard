@@ -7,7 +7,13 @@ import { FormsModule } from '@angular/forms';
 import { AppService } from '../app.service';
 @Component({
   selector: 'app-merchant',
-  templateUrl: './merchant.component.html'
+  templateUrl: './merchant.component.html',
+  styles: [`
+    .some-class {
+      background-color:#ffb822;
+      color:white !important;
+    }
+  `],
 })
 
 export class MerchantComponent implements OnInit, AfterViewInit {
@@ -441,8 +447,8 @@ export class MerchantComponent implements OnInit, AfterViewInit {
   }
 // new end
   goToPage(i) {
+    this.page_num = i + 1;
     if (this.category === 'user') {
-      this.page_num = i + 1;
       this.cpyService.getMerchantInfo(this.page_num, this.category, this.account_id).subscribe(
         event => {
           this.merchant_id = event.ev_data.recs[0].merchant_id;

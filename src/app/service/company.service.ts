@@ -22,6 +22,19 @@ export class CompanyService {
         return response.json();
       }).catch(this.handleError);
   }
+  getMerchantByKeyword(keyword) {
+    const headers = new Headers({
+      'Auth-Token': localStorage.getItem('token'),
+      'Content-Type': 'application/json'
+    });
+    const options = new RequestOptions({ headers: headers });
+
+    return this.http
+      .post('https://mcfpayapi.ca/api/v1/mgt/get_merchants/', {'page_num': 1, 'page_size': 8, 'keyword': keyword}, { headers: headers}
+      ).map((response: Response) => {
+        return response.json();
+      }).catch(this.handleError);
+  }
   getMerchantInfo(page_num, category, account_id) {
     const headers = new Headers({
       'Auth-Token': localStorage.getItem('token'),

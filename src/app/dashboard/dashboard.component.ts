@@ -8,7 +8,13 @@ import { AppService } from '../app.service';
 import {ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html'
+  templateUrl: './dashboard.component.html',
+  styles: [`
+    .some-class {
+      background-color:#ffb822;
+      color:white !important;
+    }
+  `],
 })
 
 export class DashboardComponent implements OnInit, AfterViewInit {
@@ -19,6 +25,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   page_size: number;
   newUser: any = false;
   i: any;
+  keyword: any;
   deleteItem: any;
   total_page: number;
   message: any = false;
@@ -33,12 +40,32 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
 
   }
-
+  getMerchantByKeyword() {
+    this.cpyService.getMerchantByKeyword(this.keyword).subscribe(
+      event => {
+        this.companyInfo = event.ev_data.recs;
+        this.page_num = event.ev_data.page_num;
+        this.total_page = event.ev_data.total_page;
+        this.dataloded = true;
+      },
+      event => {
+        if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
+        }
+      }
+    );
+    setTimeout(() => {
+      this.getNumber();
+    }, 2000);
+  }
   getNumber() {
     return this.pageNumArray = new Array(this.total_page);
 
   }
   goToPage(i) {
+    this.page_num = i+1;
     this.cpyService.getMerchants(i + 1).subscribe(
       event => {
         this.companyInfo = event.ev_data.recs;

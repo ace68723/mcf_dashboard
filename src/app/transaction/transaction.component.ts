@@ -5,7 +5,13 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-transaction',
-  templateUrl: './transaction.component.html'
+  templateUrl: './transaction.component.html',
+  styles: [`
+    .some-class {
+      background-color:#ffb822;
+      color:white !important;
+    }
+  `],
 })
 
 export class TransactionComponent implements OnInit, AfterViewInit {
@@ -30,7 +36,7 @@ export class TransactionComponent implements OnInit, AfterViewInit {
     ngOnInit() {
       this.account_id = localStorage.getItem('account_id');
       this.merchantname = localStorage.getItem('merchantname');
-      this.getTable();
+      this.getOtherHistory();
       console.log(this.account_id);
     }
 
@@ -47,6 +53,8 @@ export class TransactionComponent implements OnInit, AfterViewInit {
         this.getTable();
       } else if (this.status == 'history') {
         this.getBillHistory();
+      } else {
+        this.getOtherHistory();
       }
     }
     getTable() {
@@ -116,5 +124,41 @@ export class TransactionComponent implements OnInit, AfterViewInit {
         }, 2000);
         console.log(this.pageNumArray);
       }
+      getOtherHistory() {
+        this.status = '';
+        this.time.iv_start = this.ivstart.nativeElement.value;
+        this.time.iv_end = this.ivend.nativeElement.value;
+        this.appService.getOtherHistory(this.page_num, this.account_id).subscribe(
+          event => {
+            console.log(event);
+            this.categories = event.ev_data.recs;
+            this.page_num = event.ev_data.page_num;
+            this.total_page = event.ev_data.total_page;
+            console.log(this.categories);
+            this.categories.forEach(item => {
+                if (item.vendor_channel == "WX") {
+                      item.vendor_channel = '微信支付';
+                } else {
+                  item.vendor_channel = '支付宝';
+                }
+              });
+              this.categories.forEach(item => {
+                if (item.is_refund == true) {
+                      item.is_refund = '退款';
+                } else {
+                  item.is_refund = '付款';
+                }
+              });
+              this.categories.forEach(item => {
+                item.amount_in_cent = item.amount_in_cent / 100;
+              });
+          }
+        );
+        setTimeout(() => {
+          this.getNumber();
+        }, 2000);
+        console.log(this.pageNumArray);
+      }
+
 
 }

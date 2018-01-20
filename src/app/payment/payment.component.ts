@@ -8,7 +8,13 @@ import { AppService } from '../app.service';
 import {ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-payment',
-  templateUrl: './payment.component.html'
+  templateUrl: './payment.component.html',
+  styles: [`
+    .some-class {
+      background-color:#ffb822;
+      color:white !important;
+    }
+  `],
 })
 
 export class PaymentComponent implements OnInit, AfterViewInit {
@@ -43,6 +49,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     this.router.navigate(['merchant']);
   }
   goToPage(i) {
+    this.page_num = i + 1;
     this.appService.getMerchantSettlement(i + 1).subscribe(
       event => {
         this.payments = event.ev_data.recs;

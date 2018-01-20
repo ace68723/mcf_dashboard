@@ -6,7 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { AppService } from '../app.service';
 @Component({
   selector: 'app-tables',
-  templateUrl: './settlements.component.html'
+  templateUrl: './settlements.component.html',
+  styles: [`
+    .some-class {
+      background-color:#ffb822;
+      color:white !important;
+    }
+  `],
 })
 
 export class SettlementComponent implements OnInit, AfterViewInit {
@@ -32,7 +38,7 @@ export class SettlementComponent implements OnInit, AfterViewInit {
 
   }
   goToPage(i) {
-    console.log(i);
+    this.page_num = i + 1;
     this.appService.getSettlements(i + 1).subscribe(
       event => {
         console.log(event);

@@ -8,7 +8,13 @@ import { AppService } from '../app.service';
 import {ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-orders',
-  templateUrl: './orders.component.html'
+  templateUrl: './orders.component.html',
+  styles: [`
+    .some-class {
+      background-color:#ffb822;
+      color:white !important;
+    }
+  `],
 })
 
 export class OrdersComponent implements OnInit, AfterViewInit {
@@ -17,6 +23,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
   pageNumArray: any = [];
   page_size: number;
   i: any;
+  keyword: any;
   total_page: number;
   dataloded: any = false;
   constructor(private _script: ScriptLoaderService, private appService: AppService, private cpyService: CompanyService,
@@ -33,10 +40,31 @@ export class OrdersComponent implements OnInit, AfterViewInit {
   console(i) {
     console.log(i);
   }
+  getMerchantByKeyword() {
+    this.cpyService.getMerchantByKeyword(this.keyword).subscribe(
+      event => {
+        this.companyInfo = event.ev_data.recs;
+        this.page_num = event.ev_data.page_num;
+        this.total_page = event.ev_data.total_page;
+        this.dataloded = true;
+      },
+      event => {
+        if (event.ev_error === 10011) {
+          alert('Your account has been logged in from another device.');
+        } else if (event.ev_error === 10001) {
+          alert('Token Expires. Please login again.');
+        }
+      }
+    );
+    setTimeout(() => {
+      this.getNumber();
+    }, 2000);
+  }
   getNumber() {
     return this.pageNumArray = new Array(this.total_page);
   }
   goToPage(i) {
+    this.page_num = i+1;
     this.cpyService.getMerchants(i + 1).subscribe(
       event => {
         this.companyInfo = event.ev_data.recs;

@@ -72,6 +72,26 @@ export class AppService {
         return response.json();
       }).catch(this.handleError);
   }
+  getOtherHistory(page_num, account_id) {
+    const headers = new Headers({
+      'Auth-Token': localStorage.getItem('token'),
+      'Content-Type': 'application/json'
+    });
+    const body = {
+      'account_id': parseInt(account_id, 10),
+      'start_time': '2000/01/01',
+      'end_time': Date.now(),
+      'page_num': page_num,
+      'page_size': 10
+   };
+    const options = new RequestOptions({ headers: headers });
+
+    return this.http
+      .post('https://mcfpayapi.ca/api/v1/mgt/query_txns_by_time/', JSON.stringify(body), {headers: headers}
+      ).map((response: Response) => {
+        return response.json();
+      }).catch(this.handleError);
+  }
   login(model) {
     const headers = new Headers({
       'Content-Type': 'application/json'
