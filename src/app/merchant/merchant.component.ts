@@ -215,7 +215,7 @@ export class MerchantComponent implements OnInit, AfterViewInit {
     item.is_deleted = 0;
     this.cpyService.setMerchantUser(item).subscribe(
       event => {
-        if (event.ev_error == 0) {
+        if (event.ev_error === 0) {
           item.password = event.ev_data;
           item.isEditing = false;
           this.editing2 = false;

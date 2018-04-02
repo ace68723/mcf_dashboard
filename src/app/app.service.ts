@@ -166,5 +166,22 @@ export class AppService {
   private handleError(error: Response) {
     return Observable.throw(error.json());
   }
+  getMerchantSettlementByid(page_num, id) {
+    const headers = new Headers({
+      'Auth-Token': localStorage.getItem('token'),
+      'Content-Type': 'application/json'
+    });
+    const body = {
+      'account_id': parseInt(id, 10),
+      'page_num': page_num,
+      'page_size': 10
+   };
+    const options = new RequestOptions({ headers: headers });
 
+    return this.http
+      .post('https://mcfpayapi.ca/api/v1/mgt/get_merchant_settlement/', JSON.stringify(body), {headers: headers}
+      ).map((response: Response) => {
+        return response.json();
+      }).catch(this.handleError);
+  }
 }

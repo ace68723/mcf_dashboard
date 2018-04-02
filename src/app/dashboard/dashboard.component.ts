@@ -64,6 +64,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     return this.pageNumArray = new Array(this.total_page);
 
   }
+  goToPayment(item) {
+    console.log(item);
+    localStorage.setItem('selectPayment', item.account_id);
+    this.router.navigate(['/payment']);
+  }
   goToPage(i) {
     this.page_num = i+1;
     this.cpyService.getMerchants(i + 1).subscribe(

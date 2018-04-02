@@ -20,6 +20,7 @@ export class SettlementComponent implements OnInit, AfterViewInit {
   page_num: number;
   page_size: number;
   total_page: number;
+  keyword: any;
   pageNumArray: any = [];
   i: any;
   constructor(private _script: ScriptLoaderService, private appService: AppService) {
@@ -49,31 +50,11 @@ export class SettlementComponent implements OnInit, AfterViewInit {
         this.settlments.forEach(item => {
           const a = new Date(item.start_time * 1000);
           item.start_time = a.toLocaleString();
-          // const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-          // const year = a.getFullYear();
-          // const month = months[a.getMonth()];
-          // const date = a.getDate();
-          // const hour = a.getHours();
-          // const min = a.getMinutes();
-          // let sec = a.getSeconds();
-          // if (sec < 10) {
-          //   sec = '0' + sec;
-          // }
-          // item.start_time = year + ' ' + month + ' ' + date + ' ' + hour + ':' + min + ':' + sec ;
           return item.start_time;
          });
          this.settlments.forEach(item => {
           const a = new Date(item.end_time * 1000);
           item.end_time = a.toLocaleString();
-
-          // const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-          // const year = a.getFullYear();
-          // const month = months[a.getMonth()];
-          // const date = a.getDate();
-          // const hour = a.getHours();
-          // const min = a.getMinutes();
-          // const sec = a.getSeconds();
-          // item.end_time = year + ' ' + month + ' ' + date + ' ' + hour + ':' + min + ':' + sec ;
           return item.end_time;
          });
          this.settlments.forEach(item => {

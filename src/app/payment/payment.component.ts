@@ -30,7 +30,48 @@ export class PaymentComponent implements OnInit, AfterViewInit {
 
   }
   ngOnInit() {
-   this.getMerchants();
+    if (!localStorage.getItem('selectPayment')) {
+      this.getMerchants();
+     } else {
+      const account_id = localStorage.getItem('selectPayment');
+      this.appService.getMerchantSettlementByid(this.page_num, account_id).subscribe(
+        event => {
+          this.payments = event.ev_data.recs;
+          this.page_num = event.ev_data.page_num;
+          this.total_page = event.ev_data.total_page;
+          this.payments.forEach(item => {
+            if (item.is_remitted == 1) {
+                  item.is_remitted = 'Remitted';
+  
+            } else {
+              item.is_remitted = 'Not Remitted';
+  
+            }
+          });
+          this.payments.forEach(item => {
+            const a = new Date(item.start_time * 1000);
+            item.start_time = a.toLocaleString();
+            return item.start_time;
+           });
+           this.payments.forEach(item => {
+            const a = new Date(item.end_time * 1000);
+            item.end_time = a.toLocaleString();
+            return item.end_time;
+           });
+           this.payments.forEach(item => {
+            item.pay_in_cent = item.pay_in_cent / 100;
+            item.comm_in_cent = item.comm_in_cent / 100;
+            item.amount_in_cent = item.amount_in_cent / 100;
+          });
+          localStorage.removeItem('selectPayment');
+
+        }
+      );
+      setTimeout(() => {
+        this.getNumber();
+      }, 2000);
+      console.log(this.pageNumArray);
+     }
   }
   ngAfterViewInit() {
 
