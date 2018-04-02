@@ -22,6 +22,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
   payments: any = [];
   pageNumArray: any = [];
   page_size: number;
+  account_id: number;
   i: any;
   total_page: number;
   randomcolor: any;
@@ -33,8 +34,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     if (!localStorage.getItem('selectPayment')) {
       this.getMerchants();
      } else {
-      const account_id = localStorage.getItem('selectPayment');
-      this.appService.getMerchantSettlementByid(this.page_num, account_id).subscribe(
+      this.account_id = parseInt(localStorage.getItem('selectPayment'), 10);
+      this.appService.getMerchantSettlementByid(this.page_num,  this.account_id).subscribe(
         event => {
           this.payments = event.ev_data.recs;
           this.page_num = event.ev_data.page_num;
@@ -90,8 +91,40 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     this.router.navigate(['merchant']);
   }
   goToPage(i) {
-    this.page_num = i + 1;
-    this.appService.getMerchantSettlement(i + 1).subscribe(
+    if (!this.account_id) {
+      this.page_num = i + 1;
+      this.appService.getMerchantSettlement(i + 1).subscribe(
+        event => {
+          this.payments = event.ev_data.recs;
+          this.page_num = event.ev_data.page_num;
+          this.total_page = event.ev_data.total_page;
+          this.payments.forEach(item => {
+            if (item.is_remitted == 1) {
+                  item.is_remitted = 'Remitted';
+            } else {
+              item.is_remitted = 'Not Remitted';
+            }
+          });
+          this.payments.forEach(item => {
+            const a = new Date(item.start_time * 1000);
+            item.start_time = a.toLocaleString();
+            return item.start_time;
+           });
+           this.payments.forEach(item => {
+            const a = new Date(item.end_time * 1000);
+            item.end_time = a.toLocaleString();
+            return item.end_time;
+           });
+           this.payments.forEach(item => {
+            item.pay_in_cent = item.pay_in_cent / 100;
+            item.comm_in_cent = item.comm_in_cent / 100;
+            item.amount_in_cent = item.amount_in_cent / 100;
+           });
+        }
+      );
+    } else {
+      this.page_num = i + 1;
+    this.appService.getMerchantSettlementByid(i + 1, this.account_id).subscribe(
       event => {
         this.payments = event.ev_data.recs;
         this.page_num = event.ev_data.page_num;
@@ -120,6 +153,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
          });
       }
     );
+    }
+    
   }
   getMerchants() {
     this.appService.getMerchantSettlement(this.page_num).subscribe(
